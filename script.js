@@ -17,6 +17,32 @@ document.querySelectorAll('.nav-links a').forEach((link) => {
   });
 });
 
+// Add the user's Instagram profile to the social/contact areas.
+const instagramUrl = 'https://www.instagram.com/kaif9.645/?hl=en';
+const quickLinks = document.querySelector('.quick-links');
+if (quickLinks && !quickLinks.querySelector('[data-instagram]')) {
+  const link = document.createElement('a');
+  link.href = instagramUrl;
+  link.target = '_blank';
+  link.rel = 'noreferrer';
+  link.setAttribute('aria-label', 'Instagram');
+  link.dataset.instagram = 'true';
+  link.textContent = 'IG';
+  quickLinks.insertBefore(link, quickLinks.querySelector('.quick-note'));
+}
+
+const contactActions = document.querySelector('.contact-actions');
+if (contactActions && !contactActions.querySelector('[data-instagram]')) {
+  const link = document.createElement('a');
+  link.href = instagramUrl;
+  link.target = '_blank';
+  link.rel = 'noreferrer';
+  link.dataset.instagram = 'true';
+  link.className = 'button secondary';
+  link.innerHTML = 'Instagram <span>↗</span>';
+  contactActions.appendChild(link);
+}
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) entry.target.classList.add('visible');
