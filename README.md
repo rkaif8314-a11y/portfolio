@@ -9,7 +9,7 @@ A polished, responsive developer portfolio for **Kaif Ali**, an Electrical Engin
 - About, skills, projects, journey and certifications sections
 - Real GitHub project links
 - NextMarga, SmartNotepad, SkyLume Weather and Tech Cafe highlights
-- GitHub and LinkedIn contact links
+- GitHub, LinkedIn and Instagram contact links
 - Accessible navigation and mobile menu
 - Scroll reveal animations
 - SEO/Open Graph metadata
@@ -45,7 +45,8 @@ The project is designed to deploy directly from GitHub to Vercel with no build c
 ## 🔗 Profiles
 
 - GitHub: https://github.com/rkaif8314-a11y
-- LinkedIn: https://in.linkedin.com/in/kaif-ali-601654192
+- LinkedIn: https://www.linkedin.com/in/kaif-raja-92a116283/
+- Instagram: https://www.instagram.com/kaif9.645/?hl=en
 - Email: rkaif8314@gmail.com
 
 ## 📌 Featured projects
