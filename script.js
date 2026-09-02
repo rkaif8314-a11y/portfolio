@@ -1,70 +1,30 @@
-const header = document.querySelector('.site-header');
-const navToggle = document.querySelector('.nav-toggle');
-const navLinks = document.querySelector('.nav-links');
-const year = document.querySelector('#year');
-
-if (year) year.textContent = new Date().getFullYear();
-
-navToggle?.addEventListener('click', () => {
-  const open = navLinks.classList.toggle('open');
-  navToggle.setAttribute('aria-expanded', String(open));
-});
-
-document.querySelectorAll('.nav-links a').forEach((link) => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    navToggle?.setAttribute('aria-expanded', 'false');
-  });
-});
-
-// Add the user's Instagram profile to the social/contact areas.
-const instagramUrl = 'https://www.instagram.com/kaif9.645/?hl=en';
-const quickLinks = document.querySelector('.quick-links');
-if (quickLinks && !quickLinks.querySelector('[data-instagram]')) {
-  const link = document.createElement('a');
-  link.href = instagramUrl;
-  link.target = '_blank';
-  link.rel = 'noreferrer';
-  link.setAttribute('aria-label', 'Instagram');
-  link.dataset.instagram = 'true';
-  link.textContent = 'IG';
-  quickLinks.insertBefore(link, quickLinks.querySelector('.quick-note'));
-}
-
-const contactActions = document.querySelector('.contact-actions');
-if (contactActions && !contactActions.querySelector('[data-instagram]')) {
-  const link = document.createElement('a');
-  link.href = instagramUrl;
-  link.target = '_blank';
-  link.rel = 'noreferrer';
-  link.dataset.instagram = 'true';
-  link.className = 'button secondary';
-  link.innerHTML = 'Instagram <span>↗</span>';
-  contactActions.appendChild(link);
-}
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
-  });
-}, { threshold: 0.12 });
-
-document.querySelectorAll('.reveal').forEach((element) => observer.observe(element));
-
-const sections = [...document.querySelectorAll('main section[id]')];
-const navItems = [...document.querySelectorAll('.nav-links a')];
-
-const sectionObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    navItems.forEach((item) => item.classList.remove('active'));
-    const active = navItems.find((item) => item.getAttribute('href') === `#${entry.target.id}`);
-    active?.classList.add('active');
-  });
-}, { rootMargin: '-35% 0px -55% 0px', threshold: 0 });
-
-sections.forEach((section) => sectionObserver.observe(section));
-
-window.addEventListener('scroll', () => {
-  header?.classList.toggle('scrolled', window.scrollY > 10);
-}, { passive: true });
+const projects=[
+{name:"NextMarga",category:"featured",icon:"N",label:"01 · Featured",description:"Student opportunity and career-roadmap platform for discovering scholarships, competitions, examinations, internships, research opportunities, hackathons and jobs.",tech:["React","TypeScript","Vite","Tailwind CSS","Supabase","Vercel"],status:"Actively developed",github:"https://github.com/rkaif8314-a11y/NextMarga",live:"https://next-marga.vercel.app/",caseStudy:{problem:"Students often search across many places for opportunities that match their stage and goals.",idea:"Bring discovery, student context, applications and roadmap guidance into one workflow.",solution:"A student-focused platform with profiles, opportunity discovery, matching, applications, dossier features and a CareerAI layer.",features:["Opportunity search and filtering","Student profile and personalization","Career roadmap","Applications and dossier","CareerAI guidance","Supabase authentication and persistent data","Responsive/PWA-oriented experience"],engineering:"React + TypeScript frontend, Vite build tooling, Tailwind CSS, Supabase authentication/data, AI-assisted career guidance and Vercel deployment."}},
+{name:"Veriq",category:"featured",icon:"V",label:"02 · Trust",description:"Digital trust MVP for websites, messages and claims, designed to explain signals, uncertainty and recommendations instead of pretending to prove reality.",tech:["Next.js 15","React 19","TypeScript","Supabase path","Node runtime"],status:"MVP",github:"https://github.com/rkaif8314-a11y/Veriq",caseStudy:{problem:"People need context when deciding whether a digital website, message or claim is trustworthy.",idea:"Provide transparent evidence and uncertainty rather than an opaque yes/no detector.",solution:"Veriq analyzes URL, message and claim signals and presents confidence, evidence strength, limitations and recommendations.",features:["Live server-side URL analysis","HTTPS/reachability/status/redirect/hostname signals","DNS checks with private IPv4 protection","Message/scam heuristics","Claim evidence framing","Local report history","Responsive light/dark/system UI","Supabase auth and report persistence path","Input validation and no-store analysis responses"],engineering:"Next.js 15 + React 19 + TypeScript. The architecture routes UI requests through an analysis API and modular URL/message/claim signal engines. Supabase integration is optional and includes a migration with Row Level Security."}},
+{name:"SmartNotepad",category:"development",icon:"S",label:"03 · Product",description:"Cloud note-taking application for writing, organizing and securely storing notes with authentication and persistent user data.",tech:["Next.js","React","TypeScript","Tailwind CSS","Supabase","Vercel"],status:"Actively developed",github:"https://github.com/rkaif8314-a11y/SmartNotepad",caseStudy:{problem:"Keep notes available across sessions without treating a local-only editor as the whole product.",idea:"Combine a responsive note editor with cloud persistence and user authentication.",solution:"A Next.js application using Supabase for cloud notes and authentication.",features:["Cloud notes","Supabase authentication","Persistent user data","Responsive note editor","Tailwind CSS interface"],engineering:"Next.js 15, React 19, TypeScript, Tailwind CSS, Supabase and Vercel-ready deployment."}},
+{name:"CodeVault",category:"development",icon:"C",label:"04 · DSA product",description:"Personal DSA command center built around Striver's A2Z DSA Sheet with progress, status, analytics, streaks and cloud sync.",tech:["React","Vite","Firebase Auth","Firestore","Lucide React"],status:"Built / evolving",github:"https://github.com/rkaif8314-a11y/codevault",caseStudy:{problem:"DSA practice becomes harder to maintain when progress, problems and revision signals are scattered.",idea:"Turn an A2Z problem roadmap into a personal progress workspace.",solution:"A dashboard with roadmap navigation, problem statuses, search, difficulty filters, analytics, streaks and per-user cloud sync.",features:["17-step A2Z roadmap","Problem status tracking","Search and difficulty filters","Activity heatmap and streaks","Difficulty analytics","Dark/light settings","Email/password and Google auth","Firestore sync","Local progress before sign-in"],engineering:"React + Vite UI with Lucide React, Firebase Authentication and Firestore cloud persistence. The repository includes Firestore rules for user-scoped progress."}},
+{name:"SkyLume Weather",category:"development",icon:"☼",label:"05 · Utility",description:"Calm weather dashboard with live conditions, city search, browser geolocation and a 7-day forecast.",tech:["JavaScript","Open-Meteo","HTML","CSS"],status:"Static app",github:"https://github.com/rkaif8314-a11y/skylume-weather",caseStudy:{problem:"Weather information should be quick to access without requiring an API key.",idea:"Build a simple responsive dashboard around public weather and geocoding endpoints.",solution:"A browser-based dashboard powered by Open-Meteo.",features:["Live conditions","City search","Browser geolocation","7-day forecast","Celsius/Fahrenheit","Humidity, wind, pressure and feels-like data","Responsive design","No API key required"],engineering:"Static frontend calling Open-Meteo forecast and geocoding endpoints directly from the browser."}},
+{name:"C++ DSA",category:"learning",icon:"{}",label:"06 · Problem solving",description:"Dedicated C++ repository covering data structures, algorithms and coding-platform practice to strengthen problem-solving fundamentals.",tech:["C++17","STL","DSA"],status:"Ongoing learning",github:"https://github.com/rkaif8314-a11y/DSA-C-",caseStudy:{problem:"Strong software engineering fundamentals require consistent algorithmic practice.",idea:"Maintain a focused repository for implementations and coding problems.",solution:"A growing collection covering core data structures, algorithms and problem-solving patterns.",features:["Arrays and strings","Recursion","Linked lists","Stacks and queues","Trees and BSTs","Graphs","Dynamic programming","Greedy/backtracking","Sliding window and two pointers","Binary search"],engineering:"C++17 and the Standard Template Library, with problems sourced from coding platforms including LeetCode, Codeforces, CodeChef, HackerRank and GeeksforGeeks."}},
+{name:"LeetCode / TUF DSA",category:"learning",icon:"L",label:"07 · Practice",description:"Additional algorithmic problem-solving work documented in a dedicated repository.",tech:["C++","DSA","LeetCode"],status:"Ongoing learning",github:"https://github.com/rkaif8314-a11y/Leetcode-TUF-DSA-problems-",caseStudy:{problem:"Regular problem solving benefits from a separate, searchable record of solutions.",idea:"Document TUF/LeetCode-style practice in code.",solution:"A repository dedicated to algorithmic problem-solving work.",features:["Coding-problem solutions","Algorithm practice","Interview-oriented fundamentals"],engineering:"C++ problem-solving repository; the portfolio intentionally avoids claiming a specific solved-problem count."}}
+];
+const grid=document.querySelector("#projects-grid"), modal=document.querySelector("#project-modal"), modalContent=document.querySelector("#modal-content");
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function card(p,i){return '<article class="project-card '+(p.category==="featured"?'featured ':'')+'reveal" data-category="'+p.category+'"><div class="project-top"><span class="project-label">'+esc(p.label)+'</span></div><div class="project-icon '+p.icon.toLowerCase().replace(/[^a-z]/g,"")+'">'+esc(p.icon)+'</div><h3>'+esc(p.name)+'</h3><p>'+esc(p.description)+'</p><div class="project-tags">'+p.tech.map(t=>'<span>'+esc(t)+'</span>').join("")+'</div><div class="project-status">'+esc(p.status)+'</div><div class="project-links">'+(p.live?'<a href="'+p.live+'" target="_blank" rel="noopener noreferrer">Live demo ↗</a>':"")+'<a href="'+p.github+'" target="_blank" rel="noopener noreferrer">GitHub ↗</a><button class="case-button" data-case="'+i+'">Case study →</button></div></article>';}
+function render(filter="all"){grid.innerHTML=projects.filter(p=>filter==="all"||p.category===filter).map(card).join("");observeReveals();}
+render();
+document.querySelectorAll(".filter").forEach(btn=>btn.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(b=>b.classList.remove("active"));btn.classList.add("active");render(btn.dataset.filter);}));
+function openCase(i){const p=projects[i];modalContent.innerHTML='<p class="kicker">'+esc(p.label)+'</p><h2 id="modal-title">'+esc(p.name)+'</h2><p>'+esc(p.description)+'</p><h4>The problem</h4><p>'+esc(p.caseStudy.problem)+'</p><h4>The idea</h4><p>'+esc(p.caseStudy.idea)+'</p><h4>The solution</h4><p>'+esc(p.caseStudy.solution)+'</p><h4>Key features</h4><ul>'+p.caseStudy.features.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul><h4>Engineering</h4><p>'+esc(p.caseStudy.engineering)+'</p><div class="modal-actions">'+(p.live?'<a class="button primary" href="'+p.live+'" target="_blank" rel="noopener noreferrer">Live demo ↗</a>':"")+'<a class="button secondary" href="'+p.github+'" target="_blank" rel="noopener noreferrer">GitHub ↗</a></div>';modal.classList.add("open");modal.setAttribute("aria-hidden","false");document.body.style.overflow="hidden";}
+function closeCase(){modal.classList.remove("open");modal.setAttribute("aria-hidden","true");document.body.style.overflow="";}
+document.addEventListener("click",e=>{const b=e.target.closest("[data-case]");if(b)openCase(Number(b.dataset.case));if(e.target.closest("[data-close-modal]"))closeCase();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeCase();});
+const header=document.querySelector(".site-header"),navToggle=document.querySelector(".nav-toggle"),navLinks=document.querySelector(".nav-links");
+navToggle?.addEventListener("click",()=>{const open=navLinks.classList.toggle("open");navToggle.setAttribute("aria-expanded",String(open));});
+document.querySelectorAll(".nav-links a").forEach(a=>a.addEventListener("click",()=>{navLinks.classList.remove("open");navToggle?.setAttribute("aria-expanded","false");}));
+window.addEventListener("scroll",()=>header?.classList.toggle("scrolled",scrollY>10),{passive:true});
+function observeReveals(){document.querySelectorAll(".reveal:not([data-observed])").forEach(el=>{el.dataset.observed="1";revealObserver.observe(el);});}
+const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");}),{threshold:.08});observeReveals();
+const sections=[...document.querySelectorAll("main section[id]")],navItems=[...document.querySelectorAll(".nav-links a")];
+new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting)return;navItems.forEach(a=>a.classList.remove("active"));navItems.find(a=>a.getAttribute("href")==="#"+e.target.id)?.classList.add("active");}),{rootMargin:"-35% 0px -55% 0px"}).observe(document.querySelector("#home"));
+sections.slice(1).forEach(s=>new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){navItems.forEach(a=>a.classList.remove("active"));navItems.find(a=>a.getAttribute("href")==="#"+s.id)?.classList.add("active");}}),{rootMargin:"-35% 0px -55% 0px"}).observe(s));
+document.querySelector("#year").textContent=new Date().getFullYear();
+fetch("https://api.github.com/users/rkaif8314-a11y",{headers:{Accept:"application/vnd.github+json"}}).then(r=>r.ok?r.json():null).then(d=>{if(d?.public_repos)document.querySelector("#repo-count").textContent=d.public_repos;}).catch(()=>{});
