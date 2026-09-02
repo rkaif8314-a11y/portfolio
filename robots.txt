@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://rkaif8314-a11y.github.io/portfolio/sitemap.xml
