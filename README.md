@@ -40,7 +40,7 @@ A classic, premium developer portfolio for **Kaif Ali**, an Electrical Engineeri
 - SkyLume Weather: https://github.com/rkaif8314-a11y/skylume-weather
 - Tech Cafe: https://github.com/rkaif8314-a11y/tech-cafe
 - Student Record System: https://github.com/rkaif8314-a11y/IIT-BHILAI-RECORD-SYSTEM-TO-STUDENT-RECORD-MANAGEMENT-SYSTEM
-- DSA: https://github.com/rkaif8314-a11y/DSA-Data-structure-algorithm-
+- DSA: https://github.com/rkaif8314-a11y/DSA-C-
 
 ## Deploy to Vercel
 
