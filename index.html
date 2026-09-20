@@ -31,7 +31,7 @@
 <a class="brand" href="#top"><span>K</span> Kaif Ali</a>
 <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span><span></span></button>
 <div class="nav-links">
-<a class="active" href="#top">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#journey">Journey</a><a href="#certifications">Certificates</a><a href="#system-map">Systems</a><a href="#github">GitHub</a><a href="#contact">Contact</a>
+<a class="active" href="#top">Home</a><a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#journey">Journey</a><a href="#certifications">Certificates</a><a href="#system-map">Systems</a><a href="#marga">Marga</a><a href="#lab">Lab</a><a href="#github">GitHub</a><a href="#contact">Contact</a>
 </div>
 <a class="nav-cta" href="https://github.com/rkaif8314-a11y" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
 </nav>
@@ -52,20 +52,16 @@
 </div>
 </div>
 <div class="hero-visual reveal">
-<div class="hero-system" aria-label="Interactive engineering system visualization" role="img">
-<div class="system-grid"></div>
-<div class="system-orbit orbit-one"></div><div class="system-orbit orbit-two"></div>
-<div class="system-node node-core"><span>KAIF</span><small>BUILD SYSTEMS</small></div>
-<div class="system-node node-a"><span>UI</span><small>PRODUCT</small></div>
-<div class="system-node node-b"><span>DATA</span><small>SUPABASE</small></div>
-<div class="system-node node-c"><span>AI</span><small>EXPERIMENTS</small></div>
-<div class="system-line line-a"></div><div class="system-line line-b"></div><div class="system-line line-c"></div>
+<div class="hero-canvas-shell" aria-label="Interactive 3D engineering system. The canvas enhances the experience; the surrounding text contains the essential information.">
+<canvas id="hero-canvas" aria-hidden="true"></canvas>
+<div class="canvas-hud hud-top"><span>LIVE SYSTEM</span><span id="scene-readout">01 / INTRO</span></div>
+<div class="canvas-hud hud-bottom"><span>MOVE TO EXPLORE</span><span>SCROLL TO TRANSFORM</span></div>
+<div class="scene-label label-ui">UI / PRODUCT</div>
+<div class="scene-label label-data">DATA / SUPABASE</div>
+<div class="scene-label label-ai">AI / MARGA</div>
+<div class="scene-core-label"><strong>KAIF</strong><small>ENGINEERING LAB</small></div>
 </div>
-<div class="profile-ring">
-<div class="profile-card"><img src="https://avatars.githubusercontent.com/u/229342231?v=4" alt="Kaif Ali GitHub profile photo" loading="eager"></div>
-<div class="float-card card-code"><span class="mini-icon">&lt;/&gt;</span><div><strong>Build</strong><small>Ideas → working software</small></div></div>
-<div class="float-card card-stack"><span class="mini-icon">◆</span><div><strong>Explore</strong><small>Web · DSA · AI</small></div></div>
-</div>
+<div class="hero-visual-caption"><span>WEBGL / SYSTEM 01</span><strong>Ideas → interfaces → systems</strong><small>Interactive 3D is progressive enhancement. Reduced-motion and no-WebGL modes keep the story intact.</small></div>
 </div>
 </section>
 
@@ -134,9 +130,30 @@
 </div>
 </section>
 
+<section class="section flagship-story" id="marga">
+<div class="container">
+<div class="section-heading reveal"><span class="section-number">04</span><div><p class="kicker">Flagship product</p><h2>NextMarga is where <span>systems become useful.</span></h2></div><a class="text-link" href="https://next-marga.vercel.app/" target="_blank" rel="noopener noreferrer">Open live product ↗</a></div>
+<div class="marga-grid">
+<div class="marga-copy reveal">
+<span class="marga-status">ACTIVE DEVELOPMENT</span>
+<h3>A student opportunity system built around discovery, context and action.</h3>
+<p>NextMarga brings opportunities such as scholarships, competitions, examinations, internships, research opportunities, hackathons and jobs into a student-focused workflow.</p>
+<div class="marga-stages"><div><span>01</span><strong>Discover</strong><small>Find opportunities</small></div><div><span>02</span><strong>Context</strong><small>Profile & roadmap</small></div><div><span>03</span><strong>Act</strong><small>Applications & dossier</small></div><div><span>04</span><strong>Marga</strong><small>Career guidance layer</small></div></div>
+<div class="project-links"><a href="https://github.com/rkaif8314-a11y/NextMarga" target="_blank" rel="noopener noreferrer">Source ↗</a><a href="https://next-marga.vercel.app/" target="_blank" rel="noopener noreferrer">Live ↗</a></div>
+</div>
+<div class="marga-system reveal" aria-label="NextMarga architecture diagram">
+<div class="marga-node active"><span>STUDENT</span><small>profile + intent</small></div><div class="marga-connector"></div>
+<div class="marga-node"><span>CONTEXT</span><small>opportunities + roadmap</small></div><div class="marga-connector"></div>
+<div class="marga-node"><span>MARGA</span><small>AI guidance layer</small></div><div class="marga-connector"></div>
+<div class="marga-node"><span>ACTION</span><small>next step</small></div>
+</div>
+</div>
+</div>
+</section>
+
 <section class="section journey-section" id="journey">
 <div class="container">
-<div class="section-heading reveal"><span class="section-number">04</span><div><p class="kicker">Learning journey</p><h2>Learning through <span>building.</span></h2></div></div>
+<div class="section-heading reveal"><span class="section-number">05</span><div><p class="kicker">Learning journey</p><h2>Learning through <span>building.</span></h2></div></div>
 <div class="timeline reveal">
 <div class="timeline-item"><span class="timeline-dot"></span><div class="timeline-date">Current</div><div><h3>Larger product experiments</h3><p>Building and refining full-stack products such as NextMarga and Veriq while learning how product requirements, data, authentication and deployment fit together.</p></div></div>
 <div class="timeline-item"><span class="timeline-dot"></span><div class="timeline-date">Ongoing</div><div><h3>DSA & problem solving</h3><p>Maintaining dedicated C++ and LeetCode/TUF practice to strengthen algorithmic thinking and programming fundamentals.</p></div></div>
@@ -147,7 +164,7 @@
 </section>
 
 <section class="section container" id="certifications">
-<div class="section-heading reveal"><span class="section-number">05</span><div><p class="kicker">Verified learning</p><h2>Certificates & <span>learning evidence.</span></h2></div></div>
+<div class="section-heading reveal"><span class="section-number">06</span><div><p class="kicker">Verified learning</p><h2>Certificates & <span>learning evidence.</span></h2></div></div>
 <div class="cert-grid reveal">
 <a class="cert-card" href="https://github.com/rkaif8314-a11y/Certificates" target="_blank" rel="noopener noreferrer"><div class="cert-mark">CERT</div><div><span>GitHub repository</span><h3>Certificates collection</h3><p>Centralized repository for academic, technical, professional and extracurricular certificates. Open the repository to inspect the actual documents.</p><b>View certificates ↗</b></div></a>
 <a class="cert-card" href="https://github.com/rkaif8314-a11y/Responsive-web-design-certification-freecodecamp" target="_blank" rel="noopener noreferrer"><div class="cert-mark">FCC</div><div><span>FreeCodeCamp work</span><h3>Responsive Web Design</h3><p>Repository documenting responsive web-design certification work. The portfolio avoids inventing a credential date or score.</p><b>View repository ↗</b></div></a>
@@ -156,7 +173,7 @@
 </section>
 
 <section class="section container" id="system-map">
-<div class="section-heading reveal"><span class="section-number">06</span><div><p class="kicker">Systems map</p><h2>How the pieces <span>connect.</span></h2></div></div>
+<div class="section-heading reveal"><span class="section-number">07</span><div><p class="kicker">Systems map</p><h2>How the pieces <span>connect.</span></h2></div></div>
 <div class="architecture-panel reveal" aria-label="Portfolio technology ecosystem">
 <div class="arch-column"><span class="arch-label">INTERFACE</span><strong>React / Next.js / Vite</strong><small>Product surfaces, responsive UI, interaction</small></div>
 <div class="arch-arrow" aria-hidden="true">→</div>
@@ -167,8 +184,18 @@
 <div class="arch-column"><span class="arch-label">AI / SYSTEMS</span><strong>LLM experiments</strong><small>Grounded assistants, analysis, exploration</small></div>
 </div>
 </section>
+<section class="section lab-section" id="lab">
+<div class="container">
+<div class="section-heading reveal"><span class="section-number">08</span><div><p class="kicker">Engineering lab</p><h2>Small experiments. <span>Real systems thinking.</span></h2></div></div>
+<div class="lab-grid">
+<article class="lab-card reveal" data-lab="motion"><span class="lab-index">LAB / 01</span><div class="lab-visual motion-demo"><i></i><i></i><i></i><i></i></div><h3>Motion field</h3><p>Shared pointer state drives a controlled spatial response rather than isolated hover tricks.</p><span class="lab-tech">POINTER · LERP · CSS</span></article>
+<article class="lab-card reveal" data-lab="data"><span class="lab-index">LAB / 02</span><div class="lab-visual data-demo"><b>UI</b><b>API</b><b>DATA</b><b>AI</b></div><h3>Data pathways</h3><p>Architecture becomes visual: interface, application, persistence and intelligence are separate layers.</p><span class="lab-tech">SYSTEMS · SVG · STATE</span></article>
+<article class="lab-card reveal" data-lab="type"><span class="lab-index">LAB / 03</span><div class="lab-visual type-demo"><span>BUILD</span><span>SHIP</span><span>LEARN</span></div><h3>Type motion</h3><p>Typography creates hierarchy and rhythm; motion is reserved for transitions and emphasis.</p><span class="lab-tech">TYPE · CLIP · REVEAL</span></article>
+</div>
+</div>
+</section>
 <section class="section container" id="github">
-<div class="section-heading reveal"><span class="section-number">08</span><div><p class="kicker">Open work</p><h2>My GitHub is the <span>source of truth.</span></h2></div></div>
+<div class="section-heading reveal"><span class="section-number">09</span><div><p class="kicker">Open work</p><h2>My GitHub is the <span>source of truth.</span></h2></div></div>
 <div class="github-panel reveal">
 <div><div class="github-mark">GH</div><h3>@rkaif8314-a11y</h3><p>Projects, experiments, DSA practice and learning work live in public repositories. This portfolio intentionally links back to the real source instead of reproducing unverified claims.</p></div>
 <div class="github-actions"><a class="button primary" href="https://github.com/rkaif8314-a11y" target="_blank" rel="noopener noreferrer">Open profile ↗</a><a class="button secondary" href="https://github.com/rkaif8314-a11y?tab=repositories" target="_blank" rel="noopener noreferrer">Browse repositories ↗</a></div>
@@ -177,7 +204,7 @@
 
 <section class="section container" id="contact">
 <div class="contact-card reveal">
-<div><p class="kicker">09 · Contact</p><h2>Let's build something<br><span>worth sharing.</span></h2><p>For collaboration, software opportunities, project feedback or a technical conversation.</p></div>
+<div><p class="kicker">10 · Contact</p><h2>Let's build something<br><span>worth sharing.</span></h2><p>For collaboration, software opportunities, project feedback or a technical conversation.</p></div>
 <div class="contact-actions"><a class="button primary" href="mailto:kaif8314@gmail.com">Email me</a><a class="button secondary" href="https://github.com/rkaif8314-a11y" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a class="button secondary" href="https://www.linkedin.com/in/kaif-raja-92a116283/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a></div>
 </div>
 </section>
