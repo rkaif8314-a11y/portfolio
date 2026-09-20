@@ -13,12 +13,14 @@ jobs:
   validate:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
         with:
-          node-version: 22
+          node-version: 24
       - name: Check portfolio JavaScript syntax
         run: node --check script.js
+      - name: Validate portfolio HTML
+        run: npx --yes html-validate index.html
       - name: Verify required static assets
         run: |
           test -f index.html
@@ -27,3 +29,5 @@ jobs:
           test -f robots.txt
           test -f sitemap.xml
           test -f favicon.svg
+      - name: Check repository whitespace
+        run: git diff --check
