@@ -18,13 +18,36 @@ function closeCase(){if(!modal.classList.contains("open"))return;modal.classList
 document.addEventListener("click",e=>{const b=e.target.closest("[data-case]");if(b)openCase(Number(b.dataset.case));if(e.target.closest("[data-close-modal]"))closeCase();});
 document.addEventListener("keydown",e=>{if(!modal.classList.contains("open"))return;if(e.key==="Escape"){closeCase();return}if(e.key!=="Tab")return;const focusable=[...modal.querySelectorAll("a[href],button,input,select,textarea,[tabindex]:not([tabindex='-1'])")].filter(el=>!el.disabled);if(!focusable.length)return;const first=focusable[0],last=focusable[focusable.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}});
 const header=document.querySelector(".site-header"),navToggle=document.querySelector(".nav-toggle"),navLinks=document.querySelector(".nav-links");
+const cursor=document.querySelector(".cursor-orb");
+if(cursor&&!window.matchMedia("(pointer:coarse)").matches&&!window.matchMedia("(prefers-reduced-motion:reduce)").matches){
+  document.body.classList.add("cursor-ready");
+  window.addEventListener("pointermove",e=>{cursor.style.left=e.clientX+"px";cursor.style.top=e.clientY+"px";},{passive:true});
+  document.querySelectorAll("a,button,[data-case]").forEach(el=>{
+    el.addEventListener("mouseenter",()=>document.body.classList.add("cursor-hover"));
+    el.addEventListener("mouseleave",()=>document.body.classList.remove("cursor-hover"));
+  });
+}
+const heroSystem=document.querySelector(".hero-system");
+if(heroSystem&&!window.matchMedia("(prefers-reduced-motion:reduce)").matches&&!window.matchMedia("(pointer:coarse)").matches){
+  heroSystem.addEventListener("pointermove",e=>{
+    const r=heroSystem.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+    heroSystem.style.transform="rotateX("+(-y*4)+"deg) rotateY("+(x*5)+"deg)";
+  });
+  heroSystem.addEventListener("pointerleave",()=>{heroSystem.style.transform="";});
+}
 navToggle?.addEventListener("click",()=>{const open=navLinks.classList.toggle("open");navToggle.setAttribute("aria-expanded",String(open));});
 document.querySelectorAll(".nav-links a").forEach(a=>a.addEventListener("click",()=>{navLinks.classList.remove("open");navToggle?.setAttribute("aria-expanded","false");}));
-window.addEventListener("scroll",()=>header?.classList.toggle("scrolled",scrollY>10),{passive:true});
+window.addEventListener("scroll",()=>{
+  header?.classList.toggle("scrolled",scrollY>10);
+  document.documentElement.style.setProperty("--scroll-progress",Math.min(1,scrollY/(document.body.scrollHeight-innerHeight)));
+},{passive:true});
 function observeReveals(){document.querySelectorAll(".reveal:not([data-observed])").forEach(el=>{el.dataset.observed="1";revealObserver.observe(el);});}
 const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");}),{threshold:.08});observeReveals();
 const sections=[...document.querySelectorAll("main section[id]")],navItems=[...document.querySelectorAll(".nav-links a")];
 new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting)return;navItems.forEach(a=>a.classList.remove("active"));navItems.find(a=>a.getAttribute("href")==="#"+e.target.id)?.classList.add("active");}),{rootMargin:"-35% 0px -55% 0px"}).observe(document.querySelector("#home"));
 sections.slice(1).forEach(s=>new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){navItems.forEach(a=>a.classList.remove("active"));navItems.find(a=>a.getAttribute("href")==="#"+s.id)?.classList.add("active");}}),{rootMargin:"-35% 0px -55% 0px"}).observe(s));
 document.querySelector("#year").textContent=new Date().getFullYear();
+const liveRepo=document.querySelector("#repo-count");
+if(liveRepo) liveRepo.setAttribute("aria-live","polite");
 fetch("https://api.github.com/users/rkaif8314-a11y",{headers:{Accept:"application/vnd.github+json"}}).then(r=>r.ok?r.json():null).then(d=>{if(d?.public_repos)document.querySelector("#repo-count").textContent=d.public_repos;}).catch(()=>{});
