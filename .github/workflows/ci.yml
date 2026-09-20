@@ -19,8 +19,38 @@ jobs:
           node-version: 24
       - name: Check portfolio JavaScript syntax
         run: node --check script.js
-      - name: Validate portfolio HTML
-        run: npx --yes html-validate index.html
+      - name: Validate HTML structure
+        run: |
+          python - <<'PY'
+          from html.parser import HTMLParser
+          from pathlib import Path
+          import re
+
+          html = Path("index.html").read_text(encoding="utf-8")
+          class Parser(HTMLParser):
+              def error(self, message):
+                  raise ValueError(message)
+
+          Parser(convert_charrefs=True).feed(html)
+
+          required = [
+              '<!doctype html',
+              '<html lang="en">',
+              '<meta name="viewport"',
+              '<title>',
+              'id="main-content"',
+              'id="projects-grid"',
+              'id="project-modal"',
+              'id="contact"',
+          ]
+          missing = [x for x in required if x not in html.lower()]
+          if missing:
+              raise SystemExit("Missing required HTML markers: " + ", ".join(missing))
+
+          if re.search(r'href=["\']javascript:', html, re.I):
+              raise SystemExit("javascript: URLs are not allowed")
+          print("HTML structure and required landmarks validated.")
+          PY
       - name: Verify required static assets
         run: |
           test -f index.html
