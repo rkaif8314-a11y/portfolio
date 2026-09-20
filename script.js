@@ -8,6 +8,8 @@ const projects=[
 {name:"LeetCode / TUF DSA",category:"learning",icon:"L",label:"07 · Practice",description:"Additional algorithmic problem-solving work documented in a dedicated repository.",tech:["C++","DSA","LeetCode"],status:"Ongoing learning",github:"https://github.com/rkaif8314-a11y/Leetcode-TUF-DSA-problems-",caseStudy:{problem:"Regular problem solving benefits from a separate, searchable record of solutions.",idea:"Document TUF/LeetCode-style practice in code.",solution:"A repository dedicated to algorithmic problem-solving work.",features:["Coding-problem solutions","Algorithm practice","Interview-oriented fundamentals"],engineering:"C++ problem-solving repository; the portfolio intentionally avoids claiming a specific solved-problem count."}}
 ];
 const grid=document.querySelector("#projects-grid"), modal=document.querySelector("#project-modal"), modalContent=document.querySelector("#modal-content");let modalReturnFocus=null;
+const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");}),{threshold:.08});
+function observeReveals(){document.querySelectorAll(".reveal:not([data-observed])").forEach(el=>{el.dataset.observed="1";revealObserver.observe(el);});}
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 function card(p,i){return '<article class="project-card '+(p.category==="featured"?'featured ':'')+'reveal" data-category="'+p.category+'"><div class="project-top"><span class="project-label">'+esc(p.label)+'</span></div><div class="project-icon '+p.icon.toLowerCase().replace(/[^a-z]/g,"")+'">'+esc(p.icon)+'</div><h3>'+esc(p.name)+'</h3><p>'+esc(p.description)+'</p><div class="project-tags">'+p.tech.map(t=>'<span>'+esc(t)+'</span>').join("")+'</div><div class="project-status">'+esc(p.status)+'</div><div class="project-links">'+(p.live?'<a href="'+p.live+'" target="_blank" rel="noopener noreferrer">Live demo ↗</a>':"")+'<a href="'+p.github+'" target="_blank" rel="noopener noreferrer">GitHub ↗</a><button class="case-button" data-case="'+i+'">Case study →</button></div></article>';}
 function render(filter="all"){grid.innerHTML=projects.filter(p=>filter==="all"||p.category===filter).map(card).join("");observeReveals();}
@@ -42,8 +44,7 @@ window.addEventListener("scroll",()=>{
   header?.classList.toggle("scrolled",scrollY>10);
   document.documentElement.style.setProperty("--scroll-progress",Math.min(1,scrollY/(document.body.scrollHeight-innerHeight)));
 },{passive:true});
-function observeReveals(){document.querySelectorAll(".reveal:not([data-observed])").forEach(el=>{el.dataset.observed="1";revealObserver.observe(el);});}
-const revealObserver=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("visible");}),{threshold:.08});observeReveals();
+observeReveals();
 const sections=[...document.querySelectorAll("main section[id]")],navItems=[...document.querySelectorAll(".nav-links a")];
 new IntersectionObserver(entries=>entries.forEach(e=>{if(!e.isIntersecting)return;navItems.forEach(a=>a.classList.remove("active"));navItems.find(a=>a.getAttribute("href")==="#"+e.target.id)?.classList.add("active");}),{rootMargin:"-35% 0px -55% 0px"}).observe(document.querySelector("#home"));
 sections.slice(1).forEach(s=>new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){navItems.forEach(a=>a.classList.remove("active"));navItems.find(a=>a.getAttribute("href")==="#"+s.id)?.classList.add("active");}}),{rootMargin:"-35% 0px -55% 0px"}).observe(s));
