@@ -19,6 +19,7 @@
     <title>Kaif Ali — Engineering in motion</title>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="page-shell">
       <aside class="sidebar" aria-label="Sidebar navigation">
         <div class="brand-block">
@@ -54,10 +55,10 @@
       <main class="main-panel" id="top">
         <header class="topbar">
           <div class="topbar-badge">NEW</div>
-          <div class="topbar-text">Click on the image to add comments</div>
+          <div class="topbar-text">Explore the latest engineering work</div>
           <div class="topbar-actions">
-            <button type="button" class="chip-button">Open project</button>
-            <button type="button" class="ghost-button">Learn more</button>
+            <a href="https://github.com/rkaif8314-a11y/NextMarga" class="chip-button" target="_blank" rel="noopener">Open NextMarga</a>
+            <a href="#about" class="ghost-button">Learn more</a>
           </div>
         </header>
 
@@ -73,7 +74,7 @@
 
             <div class="hero-actions">
               <a href="#projects" class="primary-button">Explore my work</a>
-              <a href="#contact" class="secondary-button">Download resume</a>
+              <a href="#contact" class="secondary-button">Contact me</a>
             </div>
 
             <div class="stats-row" aria-label="Portfolio stats">
@@ -118,13 +119,14 @@
           </div>
         </section>
 
-        <section class="content-grid" id="projects">
+        <section class="content-grid" id="projects" aria-labelledby="projects-title">
+          <h2 id="projects-title" class="sr-only">Selected projects</h2>
           <article class="project-card feature-card">
             <div class="card-head">
               <span class="card-tag">NextMarga</span>
               <span class="card-pill">Active</span>
             </div>
-            <h2>Student opportunity & roadmap system</h2>
+            <h3>Student opportunity & roadmap system</h3>
             <p>
               A product focused on helping students discover scholarships, internships, competitions,
               and the next practical step in their career path.
@@ -135,6 +137,7 @@
               <span>Supabase</span>
               <span>AI</span>
             </div>
+            <a class="card-link" href="https://github.com/rkaif8314-a11y/NextMarga" target="_blank" rel="noopener">View repository →</a>
           </article>
 
           <article class="project-card">
@@ -146,6 +149,7 @@
             <p>
               A portfolio designed as a digital lab to express product thinking, systems design and creative engineering.
             </p>
+            <a class="card-link" href="https://github.com/rkaif8314-a11y/portfolio" target="_blank" rel="noopener">View repository →</a>
           </article>
 
           <article class="project-card">
@@ -238,10 +242,10 @@
           </div>
         </section>
 
-        <section class="contact-zone" id="contact">
+        <section class="contact-zone" id="contact" aria-labelledby="contact-title">
           <div class="contact-copy">
             <div class="section-kicker">Open channel</div>
-            <h2>Have a good problem?</h2>
+            <h2 id="contact-title">Have a good problem?</h2>
           </div>
           <div class="contact-actions">
             <a href="mailto:rkaif8314@gmail.com" class="primary-button">Email me</a>
@@ -254,48 +258,3 @@
     <script src="script.js" defer></script>
   </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
