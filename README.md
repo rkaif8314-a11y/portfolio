@@ -2,45 +2,37 @@
 
 A classic, premium developer portfolio for **Kaif Ali**, an Electrical Engineering student at IIT Bhilai and developer focused on full-stack web development, DSA and AI-powered applications.
 
-## Highlights
+## What this is
 
-- Premium editorial/developer visual style
-- GitHub profile photo used as the portfolio portrait
-- Strong personal branding: Developer & Builder · IIT Bhilai
-- Currently section covering education, full-stack products, DSA and AI exploration
-- NextMarga presented as the primary case-study project
-- SmartNotepad as the second featured product
-- Supporting projects for weather, campus, academic and DSA work
-- GitHub, LinkedIn, Instagram and email contact links
-- Responsive mobile navigation
-- Subtle scroll-reveal animations
-- Accessible semantic HTML
-- SEO metadata and custom favicon
-- Zero backend dependency
+The Engineering Atlas: a single-page, framework-free portfolio for Kaif Ali, a B.Tech Electrical
+Engineering student at IIT Bhilai. It presents four real projects as engineering cases studies —
+Koinelio, SmartNotepad, NextMarga and ASRS — plus a secondary section for smaller builds.
 
-## Stack
+Every project claim on the page is traceable to a source listed in `data/projects.json`.
 
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- Google Fonts
-- Vercel-ready static deployment
+## Structure
 
-## Profiles
+- `index.html` — the page, including all project copy
+- `styles.css` — design tokens and layout (ink foundation, warm amber accent)
+- `script.js` — section HUD, contour-field hero canvas, reduced-motion handling
+- `assets/` — real captures of the public project pages
+- `data/projects.json` — verified project inventory with sources per claim
+- `docs/` — testing, maintenance and release notes
 
-- GitHub: https://github.com/rkaif8314-a11y
-- LinkedIn: https://www.linkedin.com/in/kaif-raja-92a116283/
-- Instagram: https://www.instagram.com/kaif9.645/?hl=en
-- Email: rkaif8314@gmail.com
+## Projects featured
 
-## Featured projects
-
-- NextMarga: https://github.com/rkaif8314-a11y/NextMarga
+- Koinelio: https://github.com/rkaif8314-a11y/Koinelio-Campus-Community-Platform
 - SmartNotepad: https://github.com/rkaif8314-a11y/SmartNotepad
-- SkyLume Weather: https://github.com/rkaif8314-a11y/skylume-weather
-- Tech Cafe: https://github.com/rkaif8314-a11y/tech-cafe
-- Student Record System: https://github.com/rkaif8314-a11y/IIT-BHILAI-RECORD-SYSTEM-TO-STUDENT-RECORD-MANAGEMENT-SYSTEM
-- DSA: https://github.com/rkaif8314-a11y/DSA-C-
+- NextMarga: https://github.com/rkaif8314-a11y/NextMarga
+- ASRS: https://github.com/rkaif8314-a11y/IIT-BHILAI-RECORD-SYSTEM-TO-STUDENT-RECORD-MANAGEMENT-SYSTEM
+
+Secondary: SkyLume Weather, Veriq, CodeVault. Tech Cafe is excluded: its old repository link returns 404.
+
+## Truthfulness rules
+
+- No user counts, adoption claims, metrics or "production-ready" statements.
+- Status labels follow what each repository's README says.
+- Screenshots are real captures of public pages; anything else is labelled as a diagram.
 
 ## Deploy to Vercel
 

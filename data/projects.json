@@ -1,0 +1,256 @@
+{
+  "_meta": {
+    "purpose": "Verified source of record for the portfolio's project copy. The site is rendered from static HTML (index.html) — this file is documentation, not build input.",
+    "verifiedOn": "2026-10-28",
+    "method": "README.md, package.json, source tree and live URL of each repository, read via the GitHub API; live pages captured with a headless browser.",
+    "rule": "Only claims traceable to a listed source appear on the site. Unverifiable claims are omitted rather than softened."
+  },
+  "featured": [
+    {
+      "id": "koinelio",
+      "name": "Koinelio",
+      "repo": "https://github.com/rkaif8314-a11y/Koinelio-Campus-Community-Platform",
+      "demo": "https://koinelio.vercel.app",
+      "status": "In Progress — IIT Bhilai email-restricted pilot",
+      "purpose": "Supabase-backed campus community platform for profiles, approved clubs, student leadership, events, notifications and role-restricted club rooms.",
+      "stack": [
+        "Next.js (App Router)",
+        "React",
+        "TypeScript",
+        "Tailwind CSS v4",
+        "Supabase Auth",
+        "Postgres RLS",
+        "Supabase Storage",
+        "pnpm"
+      ],
+      "features": [
+        "Sign-up restricted to confirmed @iitbhilai.ac.in accounts; sign-up can only create student profiles",
+        "Persisted profile editing and avatar upload (JPG/PNG/WebP, up to 2 MB)",
+        "Posts, likes, comments, events, registrations, announcements, notifications",
+        "Club proposals, membership requests, invitations, Core Member assignment, governance approvals",
+        "Three club rooms (General, Members, Core Team) gated by Row Level Security",
+        "Post reporting with moderator-only resolution; recruitment and elections pages exist"
+      ],
+      "engineeringNote": "Role privileges are granted only through database workflows, never from client-supplied sign-up metadata.",
+      "limits": "README describes production hardening in progress: access/governance migrations are not validated on staging and not applied to the live Supabase project; not an official IIT Bhilai service.",
+      "evidence": {
+        "type": "screenshot",
+        "file": "assets/koinelio-landing.jpg",
+        "capturedFrom": "https://koinelio.vercel.app",
+        "note": "Public landing page only; signed-in app requires an account."
+      },
+      "sources": [
+        "README.md (features, status caveat, stack)",
+        "package.json (Next 16.4.0, React 19.3.0, @supabase/supabase-js)",
+        "supabase/migrations/ (14 migrations incl. RLS, storage, moderation)",
+        "tests/governance-security.test.mjs, tests/post-classification.test.mjs",
+        "docs/PHASE_6_RELEASE_CANDIDATE.md (release gates)"
+      ]
+    },
+    {
+      "id": "smartnotepad",
+      "name": "SmartNotepad",
+      "repo": "https://github.com/rkaif8314-a11y/SmartNotepad",
+      "demo": "https://smart-notepad-one.vercel.app",
+      "status": "Active development — live demo",
+      "purpose": "Cloud note-taking app: write in a responsive editor and keep notes tied to a Supabase-authenticated account.",
+      "stack": [
+        "Next.js 15",
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS",
+        "Supabase",
+        "Supabase Auth",
+        "Vercel"
+      ],
+      "features": [
+        "Next.js 15 App Router with React 19 interface",
+        "Cloud notes in Supabase with persistent per-user data",
+        "Supabase Auth sign-in, plus a demo workspace for exploring without an account",
+        "Typed codebase with ESLint and Prettier scripts"
+      ],
+      "limits": "README calls it 'actively developed' and a personal productivity project. No collaboration, sharing or publishing features are claimed.",
+      "evidence": {
+        "type": "screenshot",
+        "file": "assets/smartnotepad-signin.jpg",
+        "capturedFrom": "https://smart-notepad-one.vercel.app",
+        "note": "Sign-in screen; editor is behind authentication. The page's own copy says demo notes are not synced or saved."
+      },
+      "sources": [
+        "README.md (features, status)",
+        "package.json (next 15.5.18, react 19.0.3, @supabase/supabase-js)"
+      ]
+    },
+    {
+      "id": "nextmarga",
+      "name": "NextMarga",
+      "repo": "https://github.com/rkaif8314-a11y/NextMarga",
+      "demo": "https://next-marga.vercel.app",
+      "status": "Active development — live demo",
+      "purpose": "Student platform for discovering scholarships, competitions, exams, internships, research programs and hackathons, with a profile, roadmap, application tracking and an AI career assistant.",
+      "stack": [
+        "React 19",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS v4",
+        "Express server",
+        "Supabase",
+        "Gemini (@google/genai)",
+        "Capacitor",
+        "PWA"
+      ],
+      "features": [
+        "Opportunity search and filtering with category browsing and deadline information",
+        "Student profile with education, interests, skills and goals, plus an onboarding wizard",
+        "Roadmap, applications and dossier screens",
+        "CareerAI chat and assessment endpoints behind a server API that validates requests before calling Gemini",
+        "Supabase auth and data with RLS; PWA support and a Capacitor Android project"
+      ],
+      "engineeringNote": "AI calls sit behind a server boundary so keys never reach the client and payloads are validated before forwarding.",
+      "limits": "README calls it 'actively developed' and says opportunity coverage is still evolving. AI guidance is assistance; eligibility and deadlines should be checked against official sources.",
+      "evidence": {
+        "type": "diagram",
+        "file": "inline SVG in index.html",
+        "note": "Architecture diagram redrawn from the README. A live capture during review showed an empty opportunity list, so no screenshot is presented as a product preview."
+      },
+      "sources": [
+        "README.md (problem statement, features, architecture, status)",
+        "package.json (react 19, vite 6, express, @google/genai, @capacitor/android)",
+        "src/components/ (Profile, OpportunityHub, Roadmap, Applications, CareerAIChat, Assessment, Onboarding)",
+        "api/chat.ts, api/assess-response.ts, server.ts"
+      ]
+    },
+    {
+      "id": "asrs",
+      "name": "ASRS — student record system",
+      "repo": "https://github.com/rkaif8314-a11y/IIT-BHILAI-RECORD-SYSTEM-TO-STUDENT-RECORD-MANAGEMENT-SYSTEM",
+      "demo": "https://asrs-sys.vercel.app/",
+      "status": "Demo — role-based student records",
+      "purpose": "Attendance and academic-records system for students, faculty and administrators, with a portal per role and Firestore rules behind it.",
+      "stack": [
+        "Next.js",
+        "React",
+        "TypeScript",
+        "Firebase Auth",
+        "Cloud Firestore",
+        "Firebase Admin",
+        "Vercel"
+      ],
+      "features": [
+        "Role-based portals: profiles/{uid}.role of student, faculty or admin decides the portal",
+        "Firestore collections: profiles, courses, enrollments, attendanceSessions, attendanceRecords, marks",
+        "Firebase email/password auth with firestore.rules for role and ownership access",
+        "Documented deployment checks for auth, role routing and Firestore access"
+      ],
+      "limits": "Published as a demo. Not described as an official IIT Bhilai system; no adoption, user numbers or endorsement claimed. README asks for authorised and unauthorised paths to be tested before any deployment is treated as ready.",
+      "evidence": {
+        "type": "screenshot",
+        "file": "assets/asrs-landing.jpg",
+        "capturedFrom": "https://asrs-sys.vercel.app/",
+        "note": "Public landing page; portal dashboards require sign-in."
+      },
+      "sources": [
+        "README.md (stack, roles, collections, limits)",
+        "package.json (next 15.5.24, firebase 11, firebase-admin 13)",
+        "ROLE_ACCESS.md, firestore.rules"
+      ]
+    }
+  ],
+  "secondary": [
+    {
+      "id": "skylume",
+      "name": "SkyLume Weather",
+      "repo": "https://github.com/rkaif8314-a11y/skylume-weather",
+      "demo": "https://skylume-weather.vercel.app",
+      "purpose": "Calm weather dashboard with live conditions and a 7-day forecast.",
+      "stack": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "Open-Meteo API"
+      ],
+      "status": "Live demo",
+      "features": [
+        "City search",
+        "Browser geolocation",
+        "7-day forecast",
+        "Celsius/Fahrenheit toggle"
+      ],
+      "sources": [
+        "README.md",
+        "app.js (Open-Meteo forecast and geocoding)"
+      ]
+    },
+    {
+      "id": "veriq",
+      "name": "Veriq",
+      "repo": "https://github.com/rkaif8314-a11y/Veriq",
+      "demo": "https://veriq-smoky.vercel.app",
+      "purpose": "Trust checker for URLs, messages and claims that reports confidence and its own limits.",
+      "stack": [
+        "Next.js 15",
+        "React 19",
+        "TypeScript",
+        "Lucide",
+        "Supabase (optional)"
+      ],
+      "status": "MVP - live demo",
+      "features": [
+        "Server-side URL signal analysis",
+        "Message/scam heuristics",
+        "Transparent confidence and limitations",
+        "Local report history"
+      ],
+      "limits": "README states it does not yet provide malware reputation, WHOIS/domain age, C2PA, forensic media analysis or live fact-checking.",
+      "sources": [
+        "README.md (what works / what is deliberately not claimed)",
+        "package.json"
+      ]
+    },
+    {
+      "id": "codevault",
+      "name": "CodeVault",
+      "repo": "https://github.com/rkaif8314-a11y/codevault",
+      "demo": "https://codevault-pink.vercel.app",
+      "purpose": "Personal DSA command centre built around Striver's A2Z sheet.",
+      "stack": [
+        "React",
+        "Vite",
+        "Firebase Auth",
+        "Firestore",
+        "Lucide"
+      ],
+      "status": "Live demo",
+      "features": [
+        "A2Z progress dashboard",
+        "17-step roadmap",
+        "Problem status tracking",
+        "Streaks and heatmap",
+        "Firebase auth and cloud sync"
+      ],
+      "sources": [
+        "README.md",
+        "package.json",
+        "firestore.rules"
+      ]
+    }
+  ],
+  "practice": [
+    {
+      "name": "Leetcode-TUF-DSA-problems-",
+      "repo": "https://github.com/rkaif8314-a11y/Leetcode-TUF-DSA-problems-",
+      "note": "C++ practice archive synced with LeetHub"
+    },
+    {
+      "name": "DSA-C-",
+      "repo": "https://github.com/rkaif8314-a11y/DSA-C-",
+      "note": "C++ data-structures practice"
+    }
+  ],
+  "excluded": [
+    {
+      "name": "Tech Cafe",
+      "reason": "The repository linked from the old README (github.com/rkaif8314-a11y/tech-cafe) returns 404 and no matching public repo exists."
+    }
+  ]
+}
