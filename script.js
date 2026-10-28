@@ -109,5 +109,155 @@ if (canvas instanceof HTMLCanvasElement) {
   }
 }
 
+/* Command palette: combobox + listbox driven by aria-activedescendant.
+   Focus stays in the input; Escape restores focus to the trigger. */
+const palette = document.querySelector('#palette');
+const paletteOpen = document.querySelector('.palette-open');
+const paletteInput = document.querySelector('#palette-input');
+const paletteList = document.querySelector('#palette-list');
+const paletteEmpty = document.querySelector('.palette-empty');
+
+const destinations = [
+  { label: 'About', meta: 'Section', href: '#about' },
+  { label: 'Territories — all projects', meta: 'Section', href: '#projects' },
+  { label: 'Koinelio', meta: 'Project', href: '#koinelio' },
+  { label: 'SmartNotepad', meta: 'Project', href: '#smartnotepad' },
+  { label: 'ASRS — student record system', meta: 'Project', href: '#asrs' },
+  { label: 'NextMarga', meta: 'Project', href: '#nextmarga' },
+  { label: 'More builds', meta: 'Section', href: '#more' },
+  { label: 'Route', meta: 'Section', href: '#experience' },
+  { label: 'Instruments', meta: 'Section', href: '#skills' },
+  { label: 'Contact', meta: 'Section', href: '#contact' },
+  { label: 'GitHub profile', meta: 'External', href: 'https://github.com/rkaif8314-a11y' },
+  { label: 'LinkedIn', meta: 'External', href: 'https://www.linkedin.com/in/kaif-raja-92a116283/' },
+  { label: 'Email Kaif', meta: 'External', href: 'mailto:rkaif8314@gmail.com' },
+];
+
+let paletteMatches = [];
+let paletteResults = [];
+let paletteIndex = 0;
+let paletteReturnFocus = null;
+
+const setActiveOption = (index) => {
+  if (!paletteMatches.length) {
+    paletteInput.removeAttribute('aria-activedescendant');
+    return;
+  }
+  paletteIndex = (index + paletteMatches.length) % paletteMatches.length;
+  paletteMatches.forEach((item, i) => {
+    item.setAttribute('aria-selected', String(i === paletteIndex));
+  });
+  paletteInput.setAttribute('aria-activedescendant', paletteMatches[paletteIndex].id);
+  paletteMatches[paletteIndex].scrollIntoView({ block: 'nearest' });
+};
+
+const renderPalette = (query = '') => {
+  const q = query.trim().toLowerCase();
+  const results = q
+    ? destinations.filter((d) => `${d.label} ${d.meta}`.toLowerCase().includes(q))
+    : destinations;
+
+  paletteList.replaceChildren();
+  paletteResults = results;
+  paletteMatches = results.map((dest, i) => {
+    const li = document.createElement('li');
+    li.className = 'palette-item';
+    li.id = `palette-option-${i}`;
+    li.setAttribute('role', 'option');
+    li.setAttribute('aria-selected', 'false');
+    const text = document.createElement('span');
+    text.textContent = dest.label;
+    const meta = document.createElement('span');
+    meta.textContent = dest.meta;
+    li.append(text, meta);
+    li.addEventListener('pointerdown', (event) => {
+      event.preventDefault(); // keep focus in the dialog until it closes
+      go(dest);
+    });
+    paletteList.append(li);
+    return li;
+  });
+
+  paletteEmpty.hidden = paletteMatches.length > 0;
+  setActiveOption(0);
+};
+
+const openPalette = () => {
+  paletteReturnFocus = paletteOpen;
+  palette.hidden = false;
+  paletteOpen.setAttribute('aria-expanded', 'true');
+  document.body.style.overflow = 'hidden';
+  renderPalette(paletteInput.value);
+  paletteInput.focus();
+};
+
+const closePalette = () => {
+  palette.hidden = true;
+  paletteOpen.setAttribute('aria-expanded', 'false');
+  document.body.style.overflow = '';
+  paletteInput.value = '';
+  (paletteReturnFocus instanceof HTMLElement ? paletteReturnFocus : paletteOpen).focus();
+};
+
+const go = (dest) => {
+  closePalette();
+  if (dest.href.startsWith('#')) {
+    const target = document.querySelector(dest.href);
+    if (target) {
+      target.scrollIntoView();
+      target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    }
+    history.replaceState(null, '', dest.href);
+  } else {
+    window.open(dest.href, '_blank', 'noopener');
+  }
+};
+
+if (palette && paletteOpen && paletteInput && paletteList) {
+  // Show the shortcut that actually works on the visitor's platform.
+  const shortcutLabel = paletteOpen.querySelector('.palette-key');
+  if (shortcutLabel && !/Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)) {
+    shortcutLabel.textContent = 'Ctrl K';
+  }
+
+  paletteOpen.addEventListener('click', openPalette);
+
+  document.addEventListener('keydown', (event) => {
+    const isOpen = !palette.hidden;
+    if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
+      event.preventDefault();
+      isOpen ? closePalette() : openPalette();
+      return;
+    }
+    if (!isOpen) return;
+
+    if (event.key === 'Escape') {
+      event.preventDefault();
+      closePalette();
+    } else if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      setActiveOption(paletteIndex + 1);
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      setActiveOption(paletteIndex - 1);
+    } else if (event.key === 'Enter' && paletteResults.length) {
+      event.preventDefault();
+      const chosen = paletteResults[paletteIndex];
+      if (chosen) go(chosen);
+    } else if (event.key === 'Tab') {
+      // The panel is the only focusable region; keep Tab inside it.
+      event.preventDefault();
+      paletteInput.focus();
+    }
+  });
+
+  paletteInput.addEventListener('input', () => renderPalette(paletteInput.value));
+  palette.addEventListener('click', (event) => {
+    if (event.target === palette) closePalette();
+  });
+  renderPalette();
+}
+
 const yearTarget = document.querySelector('#year');
 if (yearTarget) yearTarget.textContent = new Date().getFullYear();
