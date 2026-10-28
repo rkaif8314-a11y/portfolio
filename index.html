@@ -10,12 +10,35 @@
     <meta property="og:description" content="Real projects, real stacks, honest status: Koinelio and NextMarga.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://portfolio-omega-fawn-iu2lq8tvnb.vercel.app/">
+    <meta property="og:image" content="https://portfolio-omega-fawn-iu2lq8tvnb.vercel.app/assets/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Kaif Ali — Engineering Atlas: Engineering, mapped project by project. Sections: Koinelio, SmartNotepad, ASRS, NextMarga.">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://portfolio-omega-fawn-iu2lq8tvnb.vercel.app/assets/og-image.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Kaif Ali",
+        "url": "https://portfolio-omega-fawn-iu2lq8tvnb.vercel.app/",
+        "description": "B.Tech Electrical Engineering student at IIT Bhilai who builds full-stack web applications.",
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "Indian Institute of Technology Bhilai"
+        },
+        "knowsAbout": ["React", "Next.js", "TypeScript", "Supabase", "Firebase", "C++"],
+        "sameAs": [
+          "https://github.com/rkaif8314-a11y",
+          "https://www.linkedin.com/in/kaif-raja-92a116283/"
+        ]
+      }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -29,6 +52,9 @@
         <a href="#skills">Instruments</a>
         <a href="#contact">Contact</a>
       </nav>
+      <button class="palette-open" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="palette">
+        <span class="palette-key" aria-hidden="true">⌘K</span><span>Jump to</span><span class="sr-only"> (opens a navigation dialog)</span>
+      </button>
       <p class="hud" aria-hidden="true"><span id="hud-section">00 · Origin</span></p>
     </header>
 
@@ -318,6 +344,20 @@
     </main>
 
     <footer class="footer container"><p>© <span id="year">2026</span> Kaif Ali</p></footer>
+
+    <div class="palette" id="palette" role="dialog" aria-modal="true" aria-labelledby="palette-title" hidden>
+      <div class="palette-panel" role="document">
+        <h2 class="sr-only" id="palette-title">Jump to a section or project</h2>
+        <label class="sr-only" for="palette-input">Search destinations</label>
+        <input id="palette-input" class="palette-input" type="text" role="combobox" autocomplete="off"
+               spellcheck="false" aria-expanded="true" aria-controls="palette-list" aria-autocomplete="list"
+               aria-describedby="palette-hint" placeholder="Jump to a section or project…">
+        <p class="palette-hint" id="palette-hint">Type to filter · ↑ ↓ to move · Enter to open · Esc to close</p>
+        <ul class="palette-list" id="palette-list" role="listbox" aria-label="Destinations"></ul>
+        <p class="palette-empty" hidden>No matching destination.</p>
+      </div>
+    </div>
+
     <script src="script.js" defer></script>
   </body>
 </html>
