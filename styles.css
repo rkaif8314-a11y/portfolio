@@ -2,13 +2,14 @@
 :root {
   --ink: #07090c;
   --surface: #0d1117;
-  --surface-2: #131a22;
-  --line: rgba(255, 255, 255, 0.1);
-  --text: #eef2f7;
-  --muted: #a6b2c0;
-  --accent: #b5ff5d;
-  --accent-ink: #0b1400;
-  --warn: #f0c36a;
+  --surface-2: #14181e;
+  --line: rgba(240, 228, 210, 0.11);
+  --text: #f1f3f6;
+  --muted: #a9b1bb;
+  --accent: #f2a33c;
+  --accent-ink: #160d00;
+  --cool: #8ea6d8;
+  --warn: #f2a33c;
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
@@ -64,7 +65,9 @@ code { font-family: var(--font-mono); font-size: 0.88em; background: var(--surfa
 .hero-inner { position: relative; z-index: 1; padding-block: 96px; }
 .hero h1 { font-size: var(--step-3); margin: 22px 0 28px; max-width: 14ch; }
 .hero h1 em { color: var(--accent); font-style: italic; padding-right: 0.1em; }
-.lead { max-width: 62ch; color: var(--muted); font-size: var(--step-1); line-height: 1.55; }
+.positioning { max-width: 58ch; margin-top: 4px; color: var(--text); font-size: clamp(1.05rem, 0.98rem + 0.35vw, 1.25rem); line-height: 1.5; }
+.positioning strong { font-weight: 600; }
+.lead { max-width: 62ch; color: var(--muted); font-size: var(--step-1); line-height: 1.55; margin-top: 18px; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
 .index { list-style: none; padding: 0; margin: 56px 0 0; display: flex; flex-wrap: wrap; gap: 12px; }
 .index a { display: inline-flex; align-items: baseline; gap: 12px; padding: 12px 18px; border: 1px solid var(--line); border-radius: var(--radius); text-decoration: none; background: rgba(13, 17, 23, 0.7); transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease); }
@@ -89,8 +92,8 @@ code { font-family: var(--font-mono); font-size: 0.88em; background: var(--surfa
 .territory-head h3 { font-size: var(--step-2); }
 .status { display: inline-flex; align-items: center; gap: 10px; font: 500 0.82rem var(--font-mono); color: var(--muted); }
 .status span { width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
-.status-wip span { background: var(--warn); }
-.status-demo span { background: #9bb4ff; }
+.status-wip span { background: transparent; box-shadow: inset 0 0 0 2px var(--accent); }
+.status-demo span { background: var(--cool); }
 .territory-body { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(24px, 4vw, 56px); align-items: start; }
 .shot { margin: 0; position: sticky; top: 90px; }
 .shot img, .shot.diagram svg { width: 100%; height: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface-2); }
@@ -108,6 +111,18 @@ code { font-family: var(--font-mono); font-size: 0.88em; background: var(--surfa
 .links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 18px; }
 .more { color: var(--muted); margin-top: 20px; }
 .more a { color: var(--text); text-underline-offset: 3px; }
+
+/* More builds — secondary, deliberately lighter than the case studies */
+.build-grid { list-style: none; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); grid-auto-rows: 1fr; gap: 16px; }
+.build { display: grid; gap: 8px; align-content: start; height: 100%; padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+.build h3 { font-size: 1.25rem; }
+.build p { color: var(--muted); }
+.build .status { margin: 0; font-size: 0.78rem; }
+.build-meta { font: 500 0.78rem var(--font-mono); }
+.btn-sm { min-height: 38px; padding: 0 16px; font-size: 0.85rem; }
+.build .links { margin-top: 6px; }
+.practice { margin-top: 28px; max-width: 72ch; color: var(--muted); }
+.practice a { color: var(--text); text-underline-offset: 3px; }
 
 /* Route */
 .timeline { list-style: none; margin: 40px 0 0; padding: 0 0 0 28px; border-left: 1px solid var(--line); display: grid; gap: 40px; }
@@ -153,6 +168,10 @@ code { font-family: var(--font-mono); font-size: 0.88em; background: var(--surfa
   .nav a { white-space: nowrap; }
 }
 @media (max-width: 560px) {
+  .hero-inner { padding-block: 64px; }
+  .hero h1 { margin: 18px 0 20px; }
+  .lead { font-size: var(--step-0); margin-top: 14px; }
+  .index { margin-top: 36px; }
   .nav { gap: 0; }
   .nav a { padding: 7px 8px; font-size: 0.8rem; }
 }

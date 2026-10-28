@@ -4,9 +4,10 @@ const hud = document.querySelector('#hud-section');
 const hudNames = {
   top: '00 · Origin',
   projects: '01 · Territories',
-  experience: '02 · Route',
-  skills: '03 · Instruments',
-  contact: '04 · Open channel',
+  more: '02 · More builds',
+  experience: '03 · Route',
+  skills: '04 · Instruments',
+  contact: '05 · Open channel',
 };
 const sections = Object.keys(hudNames)
   .map((id) => document.getElementById(id))
@@ -69,7 +70,7 @@ if (canvas instanceof HTMLCanvasElement) {
           + Math.cos(nx * 2.2 + i * 0.12) * 30;
         if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
       }
-      ctx.strokeStyle = i % 5 === 0 ? 'rgba(181,255,93,0.45)' : 'rgba(166,178,192,0.18)';
+      ctx.strokeStyle = i % 5 === 0 ? 'rgba(242,163,60,0.42)' : 'rgba(206,196,180,0.15)';
       ctx.lineWidth = i % 5 === 0 ? 1.3 : 1;
       ctx.stroke();
     }

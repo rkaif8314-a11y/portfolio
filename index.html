@@ -41,20 +41,20 @@
         <div class="container hero-inner">
           <p class="coord">N 21.25° · E 81.60° — IIT Bhilai</p>
           <h1>Engineering,<br><em>mapped</em> project by project.</h1>
+          <p class="positioning"><strong>Kaif Ali</strong> — B.Tech Electrical Engineering, IIT Bhilai. Full-stack and AI-powered applications, built and documented in the open.</p>
           <p class="lead" id="about">
-            I'm Kaif Ali, an engineering student at IIT Bhilai. I build software that connects product thinking,
-            engineering depth and interactive interfaces — currently two full-stack products on Next.js, React,
-            TypeScript and Supabase. This atlas shows what exists, what it's built with, and what's still unfinished.
+            I learn by building. Four products are mapped here — React, Next.js, TypeScript, Supabase and
+            Firebase — each shown with its real stack, its current status, and the limitations I have not solved yet.
           </p>
           <div class="hero-actions">
             <a class="btn btn-primary" href="#projects">Explore the territories</a>
-            <a class="btn btn-ghost" href="#contact">Contact me</a>
+            <a class="btn btn-ghost" href="https://github.com/rkaif8314-a11y" target="_blank" rel="noopener">GitHub<span class="sr-only"> (opens in new tab)</span></a>
           </div>
           <ul class="index" aria-label="Featured projects">
             <li><a href="#koinelio"><span class="coord">01</span> Koinelio <small>In progress · pilot</small></a></li>
             <li><a href="#smartnotepad"><span class="coord">02</span> SmartNotepad <small>Active development</small></a></li>
-            <li><a href="#nextmarga"><span class="coord">03</span> NextMarga <small>Active development</small></a></li>
-            <li><a href="#asrs"><span class="coord">04</span> ASRS <small>Demo</small></a></li>
+            <li><a href="#asrs"><span class="coord">03</span> ASRS <small>Demo</small></a></li>
+            <li><a href="#nextmarga"><span class="coord">04</span> NextMarga <small>Active development</small></a></li>
           </ul>
         </div>
       </section>
@@ -137,9 +137,44 @@
         </article>
 
 
-        <article class="territory" id="nextmarga" aria-labelledby="nextmarga-title">
+        <article class="territory" id="asrs" aria-labelledby="asrs-title">
           <header class="territory-head">
             <p class="coord">Territory 03</p>
+            <h3 id="asrs-title">ASRS — student record system</h3>
+            <p class="status status-demo"><span aria-hidden="true"></span>Demo · role-based student records</p>
+          </header>
+          <div class="territory-body">
+            <figure class="shot">
+              <img src="assets/asrs-landing.jpg" width="2880" height="1800" loading="lazy" decoding="async"
+                   alt="ASRS landing page: 'Attendance &amp; Student Records.' headline with a system panel showing Students, Courses, Attendance and Secure, above a 'Choose your portal' row with Student, Faculty and Admin cards.">
+              <figcaption>Public landing page, captured from asrs-sys.vercel.app on 28 Oct 2026. Portal dashboards require a signed-in account and are not shown.</figcaption>
+            </figure>
+            <div class="facts">
+              <p class="what">An attendance and academic-records system for students, faculty and administrators, with a separate portal for each role and Firestore security rules behind it.</p>
+              <h4>Implemented <span>(per README)</span></h4>
+              <ul>
+                <li>Role-based portals: profile documents with a <code>student</code>, <code>faculty</code> or <code>admin</code> role decide which portal a user reaches.</li>
+                <li>Firestore collections for profiles, courses, enrollments, attendance sessions, attendance records and marks.</li>
+                <li>Firebase Authentication with email and password, plus <code>firestore.rules</code> for per-role and per-owner access.</li>
+                <li>Documented deployment checks for authentication, role routing and Firestore access.</li>
+              </ul>
+              <h4>Stack</h4>
+              <ul class="tags" aria-label="ASRS stack">
+                <li>Next.js</li><li>React</li><li>TypeScript</li><li>Firebase Auth</li><li>Cloud Firestore</li><li>Firebase Admin</li><li>Vercel</li>
+              </ul>
+              <h4>Honest limits</h4>
+              <p class="limits">Published as a demo. It is not described as an official IIT Bhilai system, and no adoption, user numbers or institutional endorsement are claimed. The README asks for authorised and unauthorised paths to be tested before treating any deployment as ready.</p>
+              <p class="links">
+                <a class="btn btn-primary" href="https://asrs-sys.vercel.app/" target="_blank" rel="noopener">Live demo<span class="sr-only"> (opens in new tab)</span></a>
+                <a class="btn btn-ghost" href="https://github.com/rkaif8314-a11y/IIT-BHILAI-RECORD-SYSTEM-TO-STUDENT-RECORD-MANAGEMENT-SYSTEM" target="_blank" rel="noopener">Repository<span class="sr-only"> (opens in new tab)</span></a>
+              </p>
+            </div>
+          </div>
+        </article>
+
+        <article class="territory" id="nextmarga" aria-labelledby="nextmarga-title">
+          <header class="territory-head">
+            <p class="coord">Territory 04</p>
             <h3 id="nextmarga-title">NextMarga</h3>
             <p class="status status-active"><span aria-hidden="true"></span>Active development · live demo</p>
           </header>
@@ -191,49 +226,52 @@
           </div>
         </article>
 
-        <article class="territory" id="asrs" aria-labelledby="asrs-title">
-          <header class="territory-head">
-            <p class="coord">Territory 04</p>
-            <h3 id="asrs-title">ASRS — student record system</h3>
-            <p class="status status-demo"><span aria-hidden="true"></span>Demo · role-based student records</p>
-          </header>
-          <div class="territory-body">
-            <figure class="shot">
-              <img src="assets/asrs-landing.jpg" width="2880" height="1800" loading="lazy" decoding="async"
-                   alt="ASRS landing page: 'Attendance &amp; Student Records.' headline with a system panel showing Students, Courses, Attendance and Secure, above a 'Choose your portal' row with Student, Faculty and Admin cards.">
-              <figcaption>Public landing page, captured from asrs-sys.vercel.app on 28 Oct 2026. Portal dashboards require a signed-in account and are not shown.</figcaption>
-            </figure>
-            <div class="facts">
-              <p class="what">An attendance and academic-records system for students, faculty and administrators, with a separate portal for each role and Firestore security rules behind it.</p>
-              <h4>Implemented <span>(per README)</span></h4>
-              <ul>
-                <li>Role-based portals: profile documents with a <code>student</code>, <code>faculty</code> or <code>admin</code> role decide which portal a user reaches.</li>
-                <li>Firestore collections for profiles, courses, enrollments, attendance sessions, attendance records and marks.</li>
-                <li>Firebase Authentication with email and password, plus <code>firestore.rules</code> for per-role and per-owner access.</li>
-                <li>Documented deployment checks for authentication, role routing and Firestore access.</li>
-              </ul>
-              <h4>Stack</h4>
-              <ul class="tags" aria-label="ASRS stack">
-                <li>Next.js</li><li>React</li><li>TypeScript</li><li>Firebase Auth</li><li>Cloud Firestore</li><li>Firebase Admin</li><li>Vercel</li>
-              </ul>
-              <h4>Honest limits</h4>
-              <p class="limits">Published as a demo. It is not described as an official IIT Bhilai system, and no adoption, user numbers or institutional endorsement are claimed. The README asks for authorised and unauthorised paths to be tested before treating any deployment as ready.</p>
-              <p class="links">
-                <a class="btn btn-primary" href="https://asrs-sys.vercel.app/" target="_blank" rel="noopener">Live demo<span class="sr-only"> (opens in new tab)</span></a>
-                <a class="btn btn-ghost" href="https://github.com/rkaif8314-a11y/IIT-BHILAI-RECORD-SYSTEM-TO-STUDENT-RECORD-MANAGEMENT-SYSTEM" target="_blank" rel="noopener">Repository<span class="sr-only"> (opens in new tab)</span></a>
-              </p>
-            </div>
-          </div>
-        </article>
 
-
-        <p class="more">More builds on GitHub:
-          <a href="https://github.com/rkaif8314-a11y/skylume-weather" target="_blank" rel="noopener">SkyLume Weather</a>,
-          <a href="https://github.com/rkaif8314-a11y/Veriq" target="_blank" rel="noopener">Veriq</a>,
-          <a href="https://github.com/rkaif8314-a11y/codevault" target="_blank" rel="noopener">CodeVault</a>.
-          Full write-ups come in a later phase.
-        </p>
         <p class="more"><a href="https://github.com/rkaif8314-a11y/portfolio" target="_blank" rel="noopener">Source of this portfolio</a></p>
+      </section>
+
+      <section class="section container more-builds" id="more" aria-labelledby="more-title">
+        <p class="coord">More builds</p>
+        <h2 id="more-title">Smaller experiments</h2>
+        <p class="section-note">Kept here because they still run, not because they are finished. Stacks and status come from each repository.</p>
+
+        <ul class="build-grid">
+          <li class="build">
+            <h3>SkyLume Weather</h3>
+            <p>A calm weather dashboard with live conditions and a 7-day forecast.</p>
+            <p class="build-meta">HTML · CSS · JavaScript · Open-Meteo</p>
+            <p class="status"><span aria-hidden="true"></span>Live demo</p>
+            <p class="links">
+              <a class="btn btn-ghost btn-sm" href="https://skylume-weather.vercel.app" target="_blank" rel="noopener">Demo<span class="sr-only"> (opens in new tab)</span></a>
+              <a class="btn btn-ghost btn-sm" href="https://github.com/rkaif8314-a11y/skylume-weather" target="_blank" rel="noopener">Repo<span class="sr-only"> (opens in new tab)</span></a>
+            </p>
+          </li>
+          <li class="build">
+            <h3>Veriq</h3>
+            <p>A trust checker for URLs, messages and claims that reports its own confidence and limits.</p>
+            <p class="build-meta">Next.js 15 · React 19 · TypeScript · Supabase (optional)</p>
+            <p class="status"><span aria-hidden="true"></span>MVP · live demo</p>
+            <p class="links">
+              <a class="btn btn-ghost btn-sm" href="https://veriq-smoky.vercel.app" target="_blank" rel="noopener">Demo<span class="sr-only"> (opens in new tab)</span></a>
+              <a class="btn btn-ghost btn-sm" href="https://github.com/rkaif8314-a11y/Veriq" target="_blank" rel="noopener">Repo<span class="sr-only"> (opens in new tab)</span></a>
+            </p>
+          </li>
+          <li class="build">
+            <h3>CodeVault</h3>
+            <p>A personal DSA command centre tracking progress through Striver's A2Z sheet.</p>
+            <p class="build-meta">React · Vite · Firebase Auth · Firestore</p>
+            <p class="status"><span aria-hidden="true"></span>Live demo</p>
+            <p class="links">
+              <a class="btn btn-ghost btn-sm" href="https://codevault-pink.vercel.app" target="_blank" rel="noopener">Demo<span class="sr-only"> (opens in new tab)</span></a>
+              <a class="btn btn-ghost btn-sm" href="https://github.com/rkaif8314-a11y/codevault" target="_blank" rel="noopener">Repo<span class="sr-only"> (opens in new tab)</span></a>
+            </p>
+          </li>
+        </ul>
+
+        <p class="practice">Algorithm practice, kept as a habit rather than a showcase:
+          <a href="https://github.com/rkaif8314-a11y/Leetcode-TUF-DSA-problems-" target="_blank" rel="noopener">Leetcode-TUF-DSA-problems-</a> (C++),
+          <a href="https://github.com/rkaif8314-a11y/DSA-C-" target="_blank" rel="noopener">DSA-C-</a> (C++).
+        </p>
       </section>
 
       <section class="section container" id="experience" aria-labelledby="route-title">
