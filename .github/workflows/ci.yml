@@ -49,9 +49,15 @@ jobs:
               'id="projects"',
               'id="experience"',
               'id="skills"',
-              'id="lab"',
               'id="contact"',
               'class="scene-shell"',
+              'id="koinelio"',
+              'id="smartnotepad"',
+              'id="nextmarga"',
+              'id="asrs"',
+              'assets/koinelio-landing.jpg',
+              'assets/smartnotepad-signin.jpg',
+              'assets/asrs-landing.jpg',
           ]
           missing = [x for x in required if x not in html.lower()]
           if missing:
