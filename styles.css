@@ -185,27 +185,29 @@ code { font-family: var(--font-mono); font-size: 0.88em; background: var(--surfa
 
 
 /* Atlas 3D scene */
-.scene-shell.webgl::after { pointer-events: none; }
+.scene-shell.webgl::after { pointer-events: none; background: linear-gradient(90deg, rgba(7, 9, 12, 0.96) 0%, rgba(7, 9, 12, 0.86) 36%, rgba(7, 9, 12, 0.32) 62%, rgba(7, 9, 12, 0) 80%), linear-gradient(180deg, transparent 70%, var(--ink)); }
+@media (max-width: 720px) { .scene-shell.webgl::after { background: linear-gradient(180deg, rgba(7, 9, 12, 0.55) 0%, rgba(7, 9, 12, 0.75) 55%, var(--ink) 92%); } .scene-shell.webgl #atlas-canvas { opacity: 0.8; } }
 .scene-shell #atlas-canvas { cursor: grab; touch-action: pan-y; }
 .scene-shell #atlas-canvas:active { cursor: grabbing; }
 .hero-inner { pointer-events: none; }
 .hero-inner a, .hero-inner button { pointer-events: auto; }
-.atlas-panel { position: absolute; right: 24px; bottom: 24px; z-index: 2; display: grid; gap: 10px; justify-items: end; max-width: min(320px, calc(100% - 48px)); }
+.atlas-panel { position: absolute; right: 24px; top: 92px; z-index: 2; display: grid; gap: 10px; justify-items: end; max-width: min(320px, calc(100% - 48px)); }
 .atlas-info { display: grid; gap: 6px; padding: 14px 16px; background: rgba(7, 9, 12, 0.85); border: 1px solid var(--line); border-radius: 12px; }
 .atlas-info[hidden], .atlas-hint[hidden] { display: none; }
 .atlas-info span { color: var(--muted); font-size: 0.9rem; }
 .atlas-info .btn { justify-self: start; }
-@media (max-width: 720px) { .atlas-panel { right: 12px; bottom: 12px; } }
+@media (max-width: 900px) { .atlas-panel { top: auto; bottom: 12px; right: 12px; } }
 
 /* Atlas 3D scene */
-.scene-shell.webgl::after { pointer-events: none; }
+.scene-shell.webgl::after { pointer-events: none; background: linear-gradient(90deg, rgba(7, 9, 12, 0.96) 0%, rgba(7, 9, 12, 0.86) 36%, rgba(7, 9, 12, 0.32) 62%, rgba(7, 9, 12, 0) 80%), linear-gradient(180deg, transparent 70%, var(--ink)); }
+@media (max-width: 720px) { .scene-shell.webgl::after { background: linear-gradient(180deg, rgba(7, 9, 12, 0.55) 0%, rgba(7, 9, 12, 0.75) 55%, var(--ink) 92%); } .scene-shell.webgl #atlas-canvas { opacity: 0.8; } }
 .scene-shell #atlas-canvas { cursor: grab; touch-action: pan-y; }
 .scene-shell #atlas-canvas:active { cursor: grabbing; }
 .hero-inner { pointer-events: none; }
 .hero-inner a, .hero-inner button { pointer-events: auto; }
-.atlas-panel { position: absolute; right: 24px; bottom: 24px; z-index: 2; display: grid; gap: 10px; justify-items: end; max-width: min(320px, calc(100% - 48px)); }
+.atlas-panel { position: absolute; right: 24px; top: 92px; z-index: 2; display: grid; gap: 10px; justify-items: end; max-width: min(320px, calc(100% - 48px)); }
 .atlas-info { display: grid; gap: 6px; padding: 14px 16px; background: rgba(7, 9, 12, 0.85); border: 1px solid var(--line); border-radius: 12px; }
 .atlas-info[hidden], .atlas-hint[hidden] { display: none; }
 .atlas-info span { color: var(--muted); font-size: 0.9rem; }
 .atlas-info .btn { justify-self: start; }
-@media (max-width: 720px) { .atlas-panel { right: 12px; bottom: 12px; } }
+@media (max-width: 900px) { .atlas-panel { top: auto; bottom: 12px; right: 12px; } }

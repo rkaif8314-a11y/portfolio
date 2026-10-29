@@ -33,7 +33,7 @@ function init() {
   const maxDpr = mobile ? 1.25 : 2;
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
-  const home = new THREE.Vector3(0, 4.2, 9.5);
+  const home = new THREE.Vector3(0, 4.4, mobile ? 14.5 : 11);
   camera.position.copy(home);
 
   const root = new THREE.Group();
@@ -45,18 +45,23 @@ function init() {
   const key = new THREE.PointLight(AMBER, 40, 30);
   scene.add(key);
 
+  const coreGeo = track(new THREE.IcosahedronGeometry(0.82, 1));
   const core = new THREE.Mesh(
-    track(new THREE.IcosahedronGeometry(1.1, 1)),
-    track(new THREE.MeshStandardMaterial({ color: 0x1a1f26, emissive: AMBER, emissiveIntensity: 0.35, flatShading: true, roughness: 0.5 })),
+    coreGeo,
+    track(new THREE.MeshStandardMaterial({ color: 0x0d1015, emissive: 0x3a2408, emissiveIntensity: 0.5, flatShading: true, metalness: 0.55, roughness: 0.36 })),
   );
   const cage = new THREE.LineSegments(
-    track(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(1.5, 1))),
+    track(new THREE.WireframeGeometry(new THREE.IcosahedronGeometry(1.16, 1))),
     track(new THREE.LineBasicMaterial({ color: 0xcec4b4, transparent: true, opacity: 0.35 })),
   );
-  root.add(core, cage);
+  const coreEdges = new THREE.LineSegments(
+    track(new THREE.EdgesGeometry(coreGeo)),
+    track(new THREE.LineBasicMaterial({ color: AMBER, transparent: true, opacity: 0.85 })),
+  );
+  root.add(core, coreEdges, cage);
 
   const ringMat = track(new THREE.LineBasicMaterial({ color: 0xcec4b4, transparent: true, opacity: 0.22 }));
-  const nodeGeo = track(new THREE.SphereGeometry(0.17, 20, 20));
+  const nodeGeo = track(new THREE.SphereGeometry(0.095, 18, 18));
   const nodes = [];
   PROJECTS.forEach((p, i) => {
     const pivot = new THREE.Group();
@@ -68,7 +73,7 @@ function init() {
       pts.push(new THREE.Vector3(Math.cos(t) * p.r, 0, Math.sin(t) * p.r));
     }
     pivot.add(new THREE.Line(track(new THREE.BufferGeometry().setFromPoints(pts)), ringMat));
-    const mat = track(new THREE.MeshStandardMaterial({ color: 0xf4efe6, emissive: AMBER, emissiveIntensity: 0.4 }));
+    const mat = track(new THREE.MeshStandardMaterial({ color: 0xffd9a0, emissive: AMBER, emissiveIntensity: 1.1 }));
     const mesh = new THREE.Mesh(nodeGeo, mat);
     mesh.position.set(p.r, 0, 0);
     mesh.userData.id = p.id;
@@ -175,7 +180,8 @@ function init() {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, maxDpr));
     renderer.setSize(w, h, false);
     camera.aspect = w / h;
-    if (w > 900) camera.setViewOffset(w, h, -w * 0.18, 0, w, h); else camera.clearViewOffset();
+    if (w > 900) camera.setViewOffset(w, h, -w * 0.27, -h * 0.04, w, h);
+    else camera.setViewOffset(w, h, 0, -h * 0.26, w, h);
     camera.updateProjectionMatrix();
   };
   const ro = new ResizeObserver(resize);

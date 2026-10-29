@@ -109,9 +109,9 @@
       "engineeringNote": "AI calls sit behind a server boundary so keys never reach the client and payloads are validated before forwarding.",
       "limits": "README calls it 'actively developed' and says opportunity coverage is still evolving. AI guidance is assistance; eligibility and deadlines should be checked against official sources.",
       "evidence": {
-        "type": "diagram",
-        "file": "inline SVG in index.html",
-        "note": "Architecture diagram redrawn from the README. A live capture during review showed an empty opportunity list, so no screenshot is presented as a product preview."
+        "type": "screenshot",
+        "file": "assets/nextmarga-portal.png",
+        "note": "Portal opportunities screen captured on 29 Oct 2026 from the source build. The catalogue renders from Supabase and shows its empty state in the capture, so no live listings are depicted."
       },
       "sources": [
         "README.md (problem statement, features, architecture, status)",
