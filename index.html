@@ -17,6 +17,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js"
+        }
+      }
+    </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
@@ -37,6 +44,13 @@
       <section class="hero" id="top">
         <div class="scene-shell" aria-hidden="true">
           <canvas id="contours"></canvas>
+          <canvas id="atlas-3d"></canvas>
+        </div>
+        <div class="scene-controls" id="scene-controls" hidden>
+          <p class="scene-hint">DRAG TO ORBIT · FULL 360°</p>
+          <button class="scene-reset" id="scene-reset" type="button" aria-label="Reset the 3D scene view">
+            <span>Reset view</span><span class="reset-symbol" aria-hidden="true">↺</span>
+          </button>
         </div>
         <div class="container hero-inner">
           <p class="coord">N 21.25° · E 81.60° — IIT Bhilai</p>
@@ -144,8 +158,24 @@
             <p class="status status-active"><span aria-hidden="true"></span>Active development · live demo</p>
           </header>
           <div class="territory-body">
-            <figure class="shot diagram">
-              <svg viewBox="0 0 640 360" role="img" aria-labelledby="nm-diagram-title nm-diagram-desc">
+            <figure class="shot nextmarga-shot">
+              <div class="nextmarga-preview-frame">
+                <div class="portal-window-bar" aria-hidden="true">
+                  <span class="portal-window-dots"><i></i><i></i><i></i></span>
+                  <span class="portal-window-address">next-marga.vercel.app</span>
+                  <span class="portal-window-label">LIVE SITE PREVIEW</span>
+                </div>
+                <img
+                  class="nextmarga-live-image"
+                  src="https://image.thum.io/get/width/1200/crop/675/noanimate/https://next-marga.vercel.app/"
+                  width="1200"
+                  height="675"
+                  loading="lazy"
+                  decoding="async"
+                  alt="Rendered preview image generated from the public NextMarga homepage."
+                >
+                <div class="nextmarga-diagram-fallback">
+                  <svg viewBox="0 0 640 360" role="img" aria-labelledby="nm-diagram-title nm-diagram-desc">
                 <title id="nm-diagram-title">NextMarga architecture diagram</title>
                 <desc id="nm-diagram-desc">A React and TypeScript interface sends CareerAI requests through a server API boundary, which forwards them to Gemini and Supabase.</desc>
                 <g fill="none" stroke="currentColor" stroke-width="1.5">
@@ -163,7 +193,9 @@
                   <text x="480" y="305">Supabase Auth + data</text>
                 </g>
               </svg>
-              <figcaption>Architecture diagram, not a screenshot — redrawn from the README's architecture overview. A verified product screenshot is still to be added.</figcaption>
+                </div>
+              </div>
+              <figcaption>Live-page snapshot of the public NextMarga homepage. The snapshot is a visual preview, not proof that every workflow is functional. If the snapshot cannot load, the verified architecture diagram is shown instead. <a href="https://next-marga.vercel.app/" target="_blank" rel="noopener">Open the live portal ↗</a></figcaption>
             </figure>
             <div class="facts">
               <p class="what">A student-focused platform for discovering scholarships, competitions, exams, internships, research programs and hackathons, with a profile, roadmap, application tracking and an AI career assistant.</p>
@@ -282,5 +314,6 @@
 
     <footer class="footer container"><p>© <span id="year">2026</span> Kaif Ali</p></footer>
     <script src="script.js" defer></script>
+    <script type="module" src="three-scene.js"></script>
   </body>
 </html>

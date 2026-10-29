@@ -1,58 +1,54 @@
-# Kaif Ali — Portfolio
+# Kaif Ali — Engineering Atlas
 
-A classic, premium developer portfolio for **Kaif Ali**, an Electrical Engineering student at IIT Bhilai and developer focused on full-stack web development, DSA and AI-powered applications.
+An engineering-focused portfolio for Kaif Ali, an Electrical Engineering student at IIT Bhilai. It presents real software projects, verified repository links, and clear development-status notes.
 
-## Highlights
+## Experience
 
-- Premium editorial/developer visual style
-- GitHub profile photo used as the portfolio portrait
-- Strong personal branding: Developer & Builder · IIT Bhilai
-- Currently section covering education, full-stack products, DSA and AI exploration
-- NextMarga presented as the primary case-study project
-- SmartNotepad as the second featured product
-- Supporting projects for weather, campus, academic and DSA work
-- GitHub, LinkedIn, Instagram and email contact links
-- Responsive mobile navigation
-- Subtle scroll-reveal animations
-- Accessible semantic HTML
-- SEO metadata and custom favicon
-- Zero backend dependency
+- Interactive Three.js 3D orbital scene with 360-degree drag rotation
+- Project nodes link to the corresponding case studies
+- Reset-view control, touch-friendly orbiting, and reduced-motion support
+- Canvas contour fallback if WebGL or the Three.js CDN cannot load
+- Real project case studies for Koinelio, SmartNotepad, ASRS, and NextMarga
+- Live NextMarga homepage snapshot with the verified architecture diagram as a fallback
+- Responsive HTML/CSS navigation, semantic structure, and accessible project links
 
-## Stack
+## Files
 
-- HTML5
-- CSS3
-- Vanilla JavaScript
-- Google Fonts
-- Vercel-ready static deployment
+- `index.html` — semantic page and project content
+- `styles.css` — Engineering Atlas tokens, layout, responsive behavior, and preview styling
+- `script.js` — section HUD, contour fallback, year, and NextMarga preview fallback
+- `three-scene.js` — Three.js scene, OrbitControls, interactive project nodes, resize and lifecycle handling
+- `assets/` — existing project captures for Koinelio, SmartNotepad, and ASRS
+- `docs/design-research.md` — reference inspection notes and constraints
 
-## Profiles
+## Run locally
 
-- GitHub: https://github.com/rkaif8314-a11y
-- LinkedIn: https://www.linkedin.com/in/kaif-raja-92a116283/
-- Instagram: https://www.instagram.com/kaif9.645/?hl=en
-- Email: rkaif8314@gmail.com
+This is a static website. No npm install or build step is required.
 
-## Featured projects
+From the repository folder, run:
 
-- NextMarga: https://github.com/rkaif8314-a11y/NextMarga
+```bash
+python -m http.server 8000
+```
+
+Then open http://localhost:8000 in your browser.
+
+The 3D scene imports a pinned Three.js version from jsDelivr, so the browser needs internet access for the full WebGL experience. The existing contour canvas remains as a fallback. The NextMarga preview attempts to show a dynamically generated image of its public homepage through a screenshot endpoint; if the endpoint is unavailable, the architecture diagram remains visible. The full application is always available through the direct demo link.
+
+## Verified project links
+
+- Koinelio: https://github.com/rkaif8314-a11y/Koinelio-Campus-Community-Platform
 - SmartNotepad: https://github.com/rkaif8314-a11y/SmartNotepad
+- ASRS: https://github.com/rkaif8314-a11y/IIT-BHILAI-RECORD-SYSTEM-TO-STUDENT-RECORD-MANAGEMENT-SYSTEM
+- NextMarga: https://github.com/rkaif8314-a11y/NextMarga
 - SkyLume Weather: https://github.com/rkaif8314-a11y/skylume-weather
-- Tech Cafe: https://github.com/rkaif8314-a11y/tech-cafe
-- Student Record System: https://github.com/rkaif8314-a11y/IIT-BHILAI-RECORD-SYSTEM-TO-STUDENT-RECORD-MANAGEMENT-SYSTEM
-- DSA: https://github.com/rkaif8314-a11y/DSA-C-
 
-## Deploy to Vercel
+## Safety and accuracy
 
-Import the GitHub repository into Vercel.
-
-- Framework preset: **Other**
-- Build command: **None**
-- Output directory: **`.`**
-- Install command: **None**
-
-The site is static and does not require environment variables or a backend.
-
----
+- No user counts, adoption claims, impact metrics, or unsupported production-readiness claims.
+- Koinelio's production-hardening and database-migration caveat is retained.
+- ASRS is presented as a demo, not as an official IIT Bhilai system.
+- The 3D scene is decorative/supplementary; project navigation remains available as ordinary HTML.
+- No paid APIs or API keys are required.
 
 **Build · Learn · Improve · Repeat**

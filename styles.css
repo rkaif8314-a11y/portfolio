@@ -164,3 +164,106 @@ code { font-family: var(--font-mono); font-size: 0.88em; background: var(--surfa
   *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-delay: 0ms !important; }
 }
 
+
+
+/* Interactive 3D Atlas — the contour field remains as a graceful fallback. */
+.scene-shell { isolation: isolate; }
+.scene-shell canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+#contours { opacity: 0.78; transition: opacity 500ms var(--ease); }
+#atlas-3d {
+  inset-inline-start: 27%;
+  width: 73%;
+  height: 100%;
+  opacity: 0;
+  cursor: grab;
+  touch-action: pan-y;
+  pointer-events: auto;
+  transition: opacity 700ms var(--ease);
+}
+#atlas-3d:active { cursor: grabbing; }
+.atlas-webgl-ready #atlas-3d { opacity: 1; }
+.atlas-webgl-ready #contours { opacity: 0.2; }
+.scene-shell::after { z-index: 2; pointer-events: none; }
+.hero-inner { pointer-events: none; }
+.hero-inner > * { pointer-events: auto; }
+.scene-controls {
+  position: absolute;
+  z-index: 4;
+  inset-inline-end: max(20px, calc((100% - var(--max)) / 2));
+  bottom: 28px;
+  display: grid;
+  justify-items: end;
+  gap: 10px;
+}
+.scene-controls[hidden] { display: none; }
+.scene-hint {
+  color: rgba(241, 243, 246, 0.72);
+  font: 500 0.68rem/1.4 var(--font-mono);
+  letter-spacing: 0.16em;
+}
+.scene-reset {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  color: var(--text);
+  background: rgba(13, 17, 23, 0.78);
+  border: 1px solid rgba(242, 163, 60, 0.48);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  font: 500 0.78rem var(--font-mono);
+  cursor: pointer;
+  transition: transform var(--dur) var(--ease), border-color var(--dur) var(--ease), background var(--dur) var(--ease);
+}
+.scene-reset:hover { transform: translateY(-2px); border-color: var(--accent); background: rgba(22, 13, 0, 0.86); }
+.reset-symbol { color: var(--accent); font-size: 1.1rem; }
+
+.nextmarga-preview-frame {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #080a0d;
+  box-shadow: 0 18px 55px rgba(0, 0, 0, 0.24);
+}
+.portal-window-bar {
+  min-height: 42px;
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(15, 18, 23, 0.96);
+  color: var(--muted);
+  font: 500 0.68rem var(--font-mono);
+}
+.portal-window-dots { display: flex; gap: 5px; }
+.portal-window-dots i { display: block; width: 7px; height: 7px; border-radius: 50%; background: #62666c; }
+.portal-window-dots i:first-child { background: #d36d5b; }
+.portal-window-dots i:nth-child(2) { background: #d8a64b; }
+.portal-window-dots i:nth-child(3) { background: #67a77a; }
+.portal-window-address { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.portal-window-label { color: var(--accent); letter-spacing: 0.08em; white-space: nowrap; }
+.nextmarga-live-image { display: none; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 0; border-radius: 0; background: #0a0a0a; }
+.nextmarga-live-image.is-ready { display: block; }
+.nextmarga-diagram-fallback { padding: 16px; }
+.nextmarga-diagram-fallback[hidden] { display: none; }
+.nextmarga-diagram-fallback svg { width: 100%; height: auto; color: var(--accent); padding: 12px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface-2); }
+.nextmarga-shot figcaption a { color: var(--text); text-underline-offset: 3px; }
+@media (max-width: 700px) {
+  #atlas-3d { inset-inline-start: 12%; width: 88%; }
+  .scene-controls { inset-inline-end: 18px; bottom: 18px; }
+  .scene-hint { font-size: 0.6rem; }
+  .portal-window-bar { grid-template-columns: 44px minmax(0, 1fr); gap: 8px; }
+  .portal-window-label { display: none; }
+}
+@media (max-width: 560px) {
+  #atlas-3d { inset-inline-start: 0; width: 100%; }
+  .scene-hint { display: none; }
+  .nextmarga-diagram-fallback { padding: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #atlas-3d, #contours { transition: none; }
+  .scene-reset { transition: none; }
+}

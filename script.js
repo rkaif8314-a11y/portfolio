@@ -110,3 +110,24 @@ if (canvas instanceof HTMLCanvasElement) {
 
 const yearTarget = document.querySelector('#year');
 if (yearTarget) yearTarget.textContent = new Date().getFullYear();
+
+/* NextMarga live homepage image: preserve the verified diagram if remote capture is unavailable. */
+const nextMargaImage = document.querySelector('.nextmarga-live-image');
+const nextMargaDiagram = document.querySelector('.nextmarga-diagram-fallback');
+if (nextMargaImage instanceof HTMLImageElement && nextMargaDiagram instanceof HTMLElement) {
+  const preferSnapshot = () => {
+    if (nextMargaImage.naturalWidth > 100) {
+      nextMargaImage.classList.add('is-ready');
+      nextMargaDiagram.hidden = true;
+    } else {
+      nextMargaImage.classList.remove('is-ready');
+      nextMargaDiagram.hidden = false;
+    }
+  };
+  nextMargaImage.addEventListener('load', preferSnapshot);
+  nextMargaImage.addEventListener('error', () => {
+    nextMargaImage.classList.remove('is-ready');
+    nextMargaDiagram.hidden = false;
+  });
+  if (nextMargaImage.complete) preferSnapshot();
+}
