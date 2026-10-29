@@ -1,41 +1,31 @@
 document.documentElement.classList.add('js');
-const navLinks = [...document.querySelectorAll('.nav a')];
-const hud = document.querySelector('#hud-section');
-const hudNames = {
-  top: '00 · Origin',
-  projects: '01 · Territories',
-  more: '02 · More builds',
-  experience: '03 · Route',
-  skills: '04 · Instruments',
-  contact: '05 · Open channel',
-};
-const sections = Object.keys(hudNames)
-  .map((id) => document.getElementById(id))
+
+/* Rail navigation: mark the section currently in view. */
+const railLinks = [...document.querySelectorAll('.rail-nav a')];
+const watched = railLinks
+  .map((link) => document.querySelector(link.getAttribute('href')))
   .filter((el) => el instanceof HTMLElement);
 
-if ('IntersectionObserver' in window && sections.length) {
-  const sectionObserver = new IntersectionObserver(
+if ('IntersectionObserver' in window && watched.length) {
+  const spy = new IntersectionObserver(
     (entries) => {
       const visible = entries
         .filter((entry) => entry.isIntersecting)
         .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
       if (!visible) return;
-      const id = visible.target.id;
-      if (hud) hud.textContent = hudNames[id];
-      navLinks.forEach((link) => {
-        const href = link.getAttribute('href');
-        const active = href === `#${id}` || (id === 'top' && href === '#about');
+      railLinks.forEach((link) => {
+        const active = link.getAttribute('href') === `#${visible.target.id}`;
         link.classList.toggle('active', active);
         if (active) link.setAttribute('aria-current', 'location');
         else link.removeAttribute('aria-current');
       });
     },
-    { rootMargin: '-20% 0px -60% 0px', threshold: [0.05, 0.25, 0.5] },
+    { rootMargin: '-25% 0px -60% 0px', threshold: [0.05, 0.3, 0.6] },
   );
-  sections.forEach((section) => sectionObserver.observe(section));
+  watched.forEach((el) => spy.observe(el));
 }
 
-/* Contour field: decorative, aria-hidden, paused off-screen, static with reduced motion. */
+/* Contour backdrop: decorative, paused off-screen, static with reduced motion. */
 const canvas = document.querySelector('#contours');
 if (canvas instanceof HTMLCanvasElement) {
   const ctx = canvas.getContext('2d');
@@ -58,20 +48,20 @@ if (canvas instanceof HTMLCanvasElement) {
   const draw = (t) => {
     if (!ctx || !width || !height) return;
     ctx.clearRect(0, 0, width, height);
-    const lines = 26;
+    const lines = 28;
     for (let i = 0; i < lines; i += 1) {
-      const base = (i / lines) * height * 1.15;
+      const base = (i / lines) * height * 1.2;
       ctx.beginPath();
-      for (let x = 0; x <= width; x += 12) {
+      for (let x = 0; x <= width; x += 14) {
         const nx = x / width;
         const y = base
-          + Math.sin(nx * 5 + i * 0.35 + t * 0.00022) * 22
-          + Math.sin(nx * 11 - i * 0.2 + t * 0.00031 + pointerX * 2) * 9
-          + Math.cos(nx * 2.2 + i * 0.12) * 30;
+          + Math.sin(nx * 4.4 + i * 0.32 + t * 0.0002) * 26
+          + Math.sin(nx * 9 - i * 0.18 + t * 0.00028 + pointerX * 2) * 10
+          + Math.cos(nx * 2 + i * 0.1) * 34;
         if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
       }
-      ctx.strokeStyle = i % 5 === 0 ? 'rgba(242,163,60,0.42)' : 'rgba(206,196,180,0.15)';
-      ctx.lineWidth = i % 5 === 0 ? 1.3 : 1;
+      ctx.strokeStyle = i % 6 === 0 ? 'rgba(242,163,60,0.32)' : 'rgba(234,229,236,0.10)';
+      ctx.lineWidth = i % 6 === 0 ? 1.2 : 1;
       ctx.stroke();
     }
   };
@@ -81,26 +71,15 @@ if (canvas instanceof HTMLCanvasElement) {
     draw(t);
     frame = requestAnimationFrame(loop);
   };
-  const start = () => {
-    if (running || reduced.matches) return;
-    running = true;
-    frame = requestAnimationFrame(loop);
-  };
-  const stop = () => {
-    running = false;
-    cancelAnimationFrame(frame);
-  };
+  const start = () => { if (running || reduced.matches) return; running = true; frame = requestAnimationFrame(loop); };
+  const stop = () => { running = false; cancelAnimationFrame(frame); };
 
   if (ctx) {
     resize();
     draw(0);
     window.addEventListener('resize', () => { resize(); draw(performance.now()); });
-    window.addEventListener('pointermove', (event) => {
-      pointerX = event.clientX / window.innerWidth;
-    }, { passive: true });
-    reduced.addEventListener('change', () => {
-      if (reduced.matches) { stop(); draw(0); } else start();
-    });
+    window.addEventListener('pointermove', (event) => { pointerX = event.clientX / window.innerWidth; }, { passive: true });
+    reduced.addEventListener('change', () => { if (reduced.matches) { stop(); draw(0); } else start(); });
     if ('IntersectionObserver' in window) {
       new IntersectionObserver(([entry]) => (entry.isIntersecting ? start() : stop())).observe(canvas);
     } else {
@@ -109,8 +88,11 @@ if (canvas instanceof HTMLCanvasElement) {
   }
 }
 
+const yearTarget = document.querySelector('#year');
+if (yearTarget) yearTarget.textContent = new Date().getFullYear();
+
 /* Command palette: combobox + listbox driven by aria-activedescendant.
-   Focus stays in the input; Escape restores focus to the trigger. */
+   Focus stays in the field; Escape restores it to the trigger. */
 const palette = document.querySelector('#palette');
 const paletteOpen = document.querySelector('.palette-open');
 const paletteInput = document.querySelector('#palette-input');
@@ -119,14 +101,14 @@ const paletteEmpty = document.querySelector('.palette-empty');
 
 const destinations = [
   { label: 'About', meta: 'Section', href: '#about' },
-  { label: 'Territories — all projects', meta: 'Section', href: '#projects' },
+  { label: 'Route so far', meta: 'Section', href: '#experience' },
+  { label: 'Selected work', meta: 'Section', href: '#projects' },
   { label: 'Koinelio', meta: 'Project', href: '#koinelio' },
   { label: 'SmartNotepad', meta: 'Project', href: '#smartnotepad' },
-  { label: 'ASRS — student record system', meta: 'Project', href: '#asrs' },
+  { label: 'ASRS', meta: 'Project', href: '#asrs' },
   { label: 'NextMarga', meta: 'Project', href: '#nextmarga' },
-  { label: 'More builds', meta: 'Section', href: '#more' },
-  { label: 'Route', meta: 'Section', href: '#experience' },
-  { label: 'Instruments', meta: 'Section', href: '#skills' },
+  { label: 'Smaller builds', meta: 'Section', href: '#more' },
+  { label: 'Tech stack', meta: 'Section', href: '#skills' },
   { label: 'Contact', meta: 'Section', href: '#contact' },
   { label: 'GitHub profile', meta: 'External', href: 'https://github.com/rkaif8314-a11y' },
   { label: 'LinkedIn', meta: 'External', href: 'https://www.linkedin.com/in/kaif-raja-92a116283/' },
@@ -136,7 +118,6 @@ const destinations = [
 let paletteMatches = [];
 let paletteResults = [];
 let paletteIndex = 0;
-let paletteReturnFocus = null;
 
 const setActiveOption = (index) => {
   if (!paletteMatches.length) {
@@ -144,11 +125,24 @@ const setActiveOption = (index) => {
     return;
   }
   paletteIndex = (index + paletteMatches.length) % paletteMatches.length;
-  paletteMatches.forEach((item, i) => {
-    item.setAttribute('aria-selected', String(i === paletteIndex));
-  });
+  paletteMatches.forEach((item, i) => item.setAttribute('aria-selected', String(i === paletteIndex)));
   paletteInput.setAttribute('aria-activedescendant', paletteMatches[paletteIndex].id);
   paletteMatches[paletteIndex].scrollIntoView({ block: 'nearest' });
+};
+
+const go = (dest) => {
+  closePalette();
+  if (dest.href.startsWith('#')) {
+    const target = document.querySelector(dest.href);
+    if (target) {
+      target.scrollIntoView();
+      target.setAttribute('tabindex', '-1');
+      target.focus({ preventScroll: true });
+    }
+    history.replaceState(null, '', dest.href);
+  } else {
+    window.open(dest.href, '_blank', 'noopener');
+  }
 };
 
 const renderPalette = (query = '') => {
@@ -183,7 +177,6 @@ const renderPalette = (query = '') => {
 };
 
 const openPalette = () => {
-  paletteReturnFocus = paletteOpen;
   palette.hidden = false;
   paletteOpen.setAttribute('aria-expanded', 'true');
   document.body.style.overflow = 'hidden';
@@ -196,26 +189,10 @@ const closePalette = () => {
   paletteOpen.setAttribute('aria-expanded', 'false');
   document.body.style.overflow = '';
   paletteInput.value = '';
-  (paletteReturnFocus instanceof HTMLElement ? paletteReturnFocus : paletteOpen).focus();
-};
-
-const go = (dest) => {
-  closePalette();
-  if (dest.href.startsWith('#')) {
-    const target = document.querySelector(dest.href);
-    if (target) {
-      target.scrollIntoView();
-      target.setAttribute('tabindex', '-1');
-      target.focus({ preventScroll: true });
-    }
-    history.replaceState(null, '', dest.href);
-  } else {
-    window.open(dest.href, '_blank', 'noopener');
-  }
+  paletteOpen.focus();
 };
 
 if (palette && paletteOpen && paletteInput && paletteList) {
-  // Show the shortcut that actually works on the visitor's platform.
   const shortcutLabel = paletteOpen.querySelector('.palette-key');
   if (shortcutLabel && !/Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)) {
     shortcutLabel.textContent = 'Ctrl K';
@@ -246,8 +223,7 @@ if (palette && paletteOpen && paletteInput && paletteList) {
       const chosen = paletteResults[paletteIndex];
       if (chosen) go(chosen);
     } else if (event.key === 'Tab') {
-      // The panel is the only focusable region; keep Tab inside it.
-      event.preventDefault();
+      event.preventDefault(); // the panel is the only focusable region
       paletteInput.focus();
     }
   });
@@ -258,6 +234,3 @@ if (palette && paletteOpen && paletteInput && paletteList) {
   });
   renderPalette();
 }
-
-const yearTarget = document.querySelector('#year');
-if (yearTarget) yearTarget.textContent = new Date().getFullYear();

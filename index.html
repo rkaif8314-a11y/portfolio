@@ -3,22 +3,22 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Kaif Ali — Engineering Atlas</title>
-    <meta name="description" content="Kaif Ali — engineering student at IIT Bhilai building Koinelio and NextMarga. An atlas of real projects, stacks and honest status.">
-    <meta name="theme-color" content="#07090c">
-    <meta property="og:title" content="Kaif Ali — Engineering Atlas">
-    <meta property="og:description" content="Real projects, real stacks, honest status: Koinelio and NextMarga.">
+    <title>Kaif Ali — Engineering student & full-stack developer</title>
+    <meta name="description" content="Kaif Ali — B.Tech Electrical Engineering student at IIT Bhilai building full-stack products. Case studies of Koinelio, SmartNotepad, ASRS and NextMarga.">
+    <meta name="theme-color" content="#000000">
+    <meta property="og:title" content="Kaif Ali — Engineering student & full-stack developer">
+    <meta property="og:description" content="Four real products, documented with their stacks, status and limits.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://portfolio-omega-fawn-iu2lq8tvnb.vercel.app/">
     <meta property="og:image" content="https://portfolio-omega-fawn-iu2lq8tvnb.vercel.app/assets/og-image.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:image:alt" content="Kaif Ali — Engineering Atlas: Engineering, mapped project by project. Sections: Koinelio, SmartNotepad, ASRS, NextMarga.">
+    <meta property="og:image:alt" content="Kaif Ali — Hello, I'm Kaif Ali. B.Tech Electrical Engineering, IIT Bhilai. Selected work: Koinelio, SmartNotepad, ASRS, NextMarga.">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:image" content="https://portfolio-omega-fawn-iu2lq8tvnb.vercel.app/assets/og-image.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Inter:wght@400;500;600;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="styles.css">
     <script type="application/ld+json">
@@ -28,183 +28,231 @@
         "name": "Kaif Ali",
         "url": "https://portfolio-omega-fawn-iu2lq8tvnb.vercel.app/",
         "description": "B.Tech Electrical Engineering student at IIT Bhilai who builds full-stack web applications.",
-        "affiliation": {
-          "@type": "CollegeOrUniversity",
-          "name": "Indian Institute of Technology Bhilai"
-        },
+        "affiliation": { "@type": "CollegeOrUniversity", "name": "Indian Institute of Technology Bhilai" },
         "knowsAbout": ["React", "Next.js", "TypeScript", "Supabase", "Firebase", "C++"],
-        "sameAs": [
-          "https://github.com/rkaif8314-a11y",
-          "https://www.linkedin.com/in/kaif-raja-92a116283/"
-        ]
+        "sameAs": ["https://github.com/rkaif8314-a11y", "https://www.linkedin.com/in/kaif-raja-92a116283/"]
       }
     </script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
-    <header class="topbar">
-      <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true">K</span><span>Kaif Ali</span></a>
-      <nav class="nav" aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#projects">Territories</a>
-        <a href="#experience">Route</a>
-        <a href="#skills">Instruments</a>
-        <a href="#contact">Contact</a>
+    <aside class="rail" aria-label="Site rail">
+      <a class="rail-mark" href="#top"><span aria-hidden="true">KA</span><span class="sr-only">Kaif Ali, back to top</span></a>
+      <a class="rail-mail" href="mailto:rkaif8314@gmail.com">rkaif8314@gmail.com</a>
+      <nav class="rail-nav" aria-label="Main navigation">
+        <a href="#about"><span class="rail-num">01</span>About</a>
+        <a href="#projects"><span class="rail-num">02</span>Work</a>
+        <a href="#skills"><span class="rail-num">03</span>Stack</a>
+        <a href="#contact"><span class="rail-num">04</span>Contact</a>
       </nav>
       <button class="palette-open" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="palette">
-        <span class="palette-key" aria-hidden="true">⌘K</span><span>Jump to</span><span class="sr-only"> (opens a navigation dialog)</span>
+        <span class="palette-key" aria-hidden="true">⌘K</span><span class="sr-only">Search sections and projects</span>
       </button>
-      <p class="hud" aria-hidden="true"><span id="hud-section">00 · Origin</span></p>
-    </header>
+      <ul class="rail-social" aria-label="Profiles">
+        <li><a href="https://github.com/rkaif8314-a11y" target="_blank" rel="noopener">GH<span class="sr-only"> — GitHub (opens in new tab)</span></a></li>
+        <li><a href="https://www.linkedin.com/in/kaif-raja-92a116283/" target="_blank" rel="noopener">LI<span class="sr-only"> — LinkedIn (opens in new tab)</span></a></li>
+      </ul>
+    </aside>
 
     <main id="main-content">
       <section class="hero" id="top">
-        <div class="scene-shell" aria-hidden="true">
-          <canvas id="contours"></canvas>
-        </div>
-        <div class="container hero-inner">
-          <p class="coord">N 21.25° · E 81.60° — IIT Bhilai</p>
-          <h1>Engineering,<br><em>mapped</em> project by project.</h1>
-          <p class="positioning"><strong>Kaif Ali</strong> — B.Tech Electrical Engineering, IIT Bhilai. Full-stack and AI-powered applications, built and documented in the open.</p>
-          <p class="lead" id="about">
-            I learn by building. Four products are mapped here — React, Next.js, TypeScript, Supabase and
-            Firebase — each shown with its real stack, its current status, and the limitations I have not solved yet.
+        <div class="scene-shell" aria-hidden="true"><canvas id="contours"></canvas></div>
+        <div class="hero-inner">
+          <p class="eyebrow">Hello, I&rsquo;m</p>
+          <h1><span>Kaif</span> <span class="outline">Ali</span></h1>
+          <p class="hero-sub">
+            B.Tech Electrical Engineering at IIT Bhilai. I build full-stack products to learn how systems actually work,
+            then document them honestly — what runs, what does not, and what is still unfinished.
           </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#projects">Explore the territories</a>
-            <a class="btn btn-ghost" href="https://github.com/rkaif8314-a11y" target="_blank" rel="noopener">GitHub<span class="sr-only"> (opens in new tab)</span></a>
-          </div>
-          <ul class="index" aria-label="Featured projects">
-            <li><a href="#koinelio"><span class="coord">01</span> Koinelio <small>In progress · pilot</small></a></li>
-            <li><a href="#smartnotepad"><span class="coord">02</span> SmartNotepad <small>Active development</small></a></li>
-            <li><a href="#asrs"><span class="coord">03</span> ASRS <small>Demo</small></a></li>
-            <li><a href="#nextmarga"><span class="coord">04</span> NextMarga <small>Active development</small></a></li>
-          </ul>
+          <a class="scroll-cue" href="#projects"><span aria-hidden="true">↓</span> Four projects, documented</a>
         </div>
       </section>
 
-      <section class="section container" id="projects" aria-labelledby="projects-title">
-        <p class="coord">Territories</p>
-        <h2 id="projects-title">Selected projects</h2>
-        <p class="section-note">Details come from each repository's README, code and public site. Status labels follow what the repositories themselves say.</p>
+      <div class="strip" aria-hidden="true">
+        <div class="strip-track">
+          <span>Full-stack developer</span><span aria-hidden="true">·</span><span>IIT Bhilai</span><span aria-hidden="true">·</span><span>React &amp; Next.js</span><span aria-hidden="true">·</span><span>Supabase</span><span aria-hidden="true">·</span><span>Firebase</span><span aria-hidden="true">·</span>
+          <span>Full-stack developer</span><span aria-hidden="true">·</span><span>IIT Bhilai</span><span aria-hidden="true">·</span><span>React &amp; Next.js</span><span aria-hidden="true">·</span><span>Supabase</span><span aria-hidden="true">·</span><span>Firebase</span><span aria-hidden="true">·</span>
+        </div>
+      </div>
 
-        <article class="territory" id="koinelio" aria-labelledby="koinelio-title">
-          <header class="territory-head">
-            <p class="coord">Territory 01</p>
-            <h3 id="koinelio-title">Koinelio</h3>
-            <p class="status status-wip"><span aria-hidden="true"></span>In Progress · IIT Bhilai email-restricted pilot</p>
-          </header>
-          <div class="territory-body">
+      <section class="panel" id="about" aria-labelledby="about-title">
+        <header class="panel-head">
+          <p class="num">01</p>
+          <h2 id="about-title">About</h2>
+        </header>
+        <div class="panel-body about-grid">
+          <div>
+            <p class="lede">I&rsquo;m an engineering student who learns by shipping. Four products are below, each with its real stack, real status and the limits I have not solved yet.</p>
+            <p class="muted">Koinelio began as a campus community platform for IIT Bhilai — role-gated clubs, spaces and moderated posts on Postgres Row Level Security. NextMarga turned a scattered opportunity search into one guided flow. ASRS and SmartNotepad apply the same idea to records and notes.</p>
+          </div>
+          <dl class="facts">
+            <div><dt>Studying</dt><dd>B.Tech Electrical Engineering, IIT Bhilai</dd></div>
+            <div><dt>Building with</dt><dd>React, Next.js, TypeScript, Supabase, Firebase</dd></div>
+            <div><dt>Practising</dt><dd>Data structures &amp; algorithms in C++</dd></div>
+            <div><dt>Looking for</dt><dd>Software engineering internships</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="panel" id="experience" aria-labelledby="route-title">
+        <header class="panel-head">
+          <p class="num">02</p>
+          <h2 id="route-title">Route so far</h2>
+        </header>
+        <ol class="years">
+          <li>
+            <span class="year">Now</span>
+            <div>
+              <h3>Product work, in public</h3>
+              <p>Koinelio, NextMarga, ASRS and SmartNotepad — each with its own repository, README and honest status label.</p>
+            </div>
+          </li>
+          <li>
+            <span class="year">2025</span>
+            <div>
+              <h3>Building larger systems</h3>
+              <p>Moving from single screens to multi-role products with authentication, databases and access rules.</p>
+            </div>
+          </li>
+          <li>
+            <span class="year">Ongoing</span>
+            <div>
+              <h3>Algorithms, consistently</h3>
+              <p>Data structures and problem solving in C++, kept as a habit rather than a showcase.</p>
+            </div>
+          </li>
+          <li>
+            <span class="year">Foundation</span>
+            <div>
+              <h3>Engineering at IIT Bhilai</h3>
+              <p>Electrical engineering coursework, and the first attempts at making software people can actually use.</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="panel work" id="projects" aria-labelledby="work-title">
+        <header class="panel-head">
+          <p class="num">03</p>
+          <h2 id="work-title">Selected work</h2>
+        </header>
+
+        <article class="project" id="koinelio" aria-labelledby="koinelio-title">
+          <div class="project-top">
+            <span class="project-index" aria-hidden="true">01</span>
+            <div class="project-title">
+              <h3 id="koinelio-title">Koinelio</h3>
+              <p class="project-tag">Campus community platform · Next.js, Supabase</p>
+            </div>
+            <p class="chip chip-wip">In progress · pilot</p>
+          </div>
+          <div class="project-body">
             <figure class="shot">
               <img src="assets/koinelio-landing.jpg" width="2880" height="1800" loading="lazy" decoding="async"
                    alt="Koinelio public landing page: the headline 'Not just another platform. Your campus, connected.' beside a preview panel listing Campus Feed, Club communities and Purposeful conversations.">
-              <figcaption>Public landing page, captured from koinelio.vercel.app on 28 Oct 2026. The signed-in app needs an account and is not shown. The panel inside the shot is the site's own interface preview, not live member activity.</figcaption>
+              <figcaption>Public landing page, captured 28 Oct 2026. Signed-in app not shown; the panel in the shot is the site&rsquo;s own interface preview.</figcaption>
             </figure>
-            <div class="facts">
-              <p class="what">A Supabase-backed campus community platform for profiles, approved clubs, student leadership, events, notifications and role-restricted club rooms.</p>
-              <h4>Implemented <span>(per README)</span></h4>
+            <div class="project-facts">
+              <p class="project-what">A Supabase-backed campus platform: profiles, approved clubs, student leadership, events, notifications and role-restricted club rooms.</p>
+              <h4>Built</h4>
               <ul>
-                <li>Supabase Auth sign-up restricted to confirmed <code>@iitbhilai.ac.in</code> accounts; sign-up can only create student profiles.</li>
-                <li>Persisted profile editing and avatar upload (JPG, PNG or WebP, up to 2 MB).</li>
-                <li>Database-backed posts, likes, comments, events, registrations, announcements and notifications.</li>
-                <li>Club proposals, membership requests, invitations, Core Member assignment and governance approvals.</li>
-                <li>Three club rooms (General, Members, Core Team) with access enforced by Row Level Security.</li>
-                <li>Post reporting with a moderator-only resolution flow; recruitment and elections pages exist in the app.</li>
+                <li>Sign-up restricted to confirmed <code>@iitbhilai.ac.in</code> accounts; sign-up can only create students.</li>
+                <li>Profile editing and avatar upload; posts, likes, comments, events and notifications.</li>
+                <li>Club proposals, invitations, Core Member assignment and governance approvals.</li>
+                <li>Three club rooms gated by Postgres Row Level Security; moderator-only report handling.</li>
               </ul>
-              <h4>Stack</h4>
-              <ul class="tags" aria-label="Koinelio stack">
-                <li>Next.js (App Router)</li><li>React</li><li>TypeScript</li><li>Tailwind CSS v4</li><li>Supabase Auth</li><li>Postgres RLS</li><li>Supabase Storage</li><li>pnpm</li>
-              </ul>
-              <h4>Honest limits</h4>
-              <p class="limits">The README describes this as under production hardening: the access and governance migrations have not been validated on a staging database or applied to the live Supabase project, and it is not an official IIT Bhilai service. The repository includes Node test files for governance security and post classification.</p>
+              <h4>Engineering note</h4>
+              <p class="note">Privileges come only from database workflows — never from client-supplied sign-up metadata.</p>
+              <h4>Unresolved</h4>
+              <p class="limits">The README calls this production hardening: migrations are not validated on staging or applied to the live Supabase project. Not an official IIT Bhilai service.</p>
               <p class="links">
-                <a class="btn btn-primary" href="https://koinelio.vercel.app" target="_blank" rel="noopener">Live demo<span class="sr-only"> (opens in new tab)</span></a>
-                <a class="btn btn-ghost" href="https://github.com/rkaif8314-a11y/Koinelio-Campus-Community-Platform" target="_blank" rel="noopener">Repository<span class="sr-only"> (opens in new tab)</span></a>
+                <a class="btn btn-solid" href="https://koinelio.vercel.app" target="_blank" rel="noopener">Live demo<span class="sr-only"> (opens in new tab)</span></a>
+                <a class="btn" href="https://github.com/rkaif8314-a11y/Koinelio-Campus-Community-Platform" target="_blank" rel="noopener">Repository<span class="sr-only"> (opens in new tab)</span></a>
               </p>
             </div>
           </div>
         </article>
 
-        <article class="territory" id="smartnotepad" aria-labelledby="smartnotepad-title">
-          <header class="territory-head">
-            <p class="coord">Territory 02</p>
-            <h3 id="smartnotepad-title">SmartNotepad</h3>
-            <p class="status status-active"><span aria-hidden="true"></span>Active development · live demo</p>
-          </header>
-          <div class="territory-body">
+        <article class="project" id="smartnotepad" aria-labelledby="smartnotepad-title">
+          <div class="project-top">
+            <span class="project-index" aria-hidden="true">02</span>
+            <div class="project-title">
+              <h3 id="smartnotepad-title">SmartNotepad</h3>
+              <p class="project-tag">Cloud notepad · Next.js, Supabase Auth</p>
+            </div>
+            <p class="chip">Active development</p>
+          </div>
+          <div class="project-body">
             <figure class="shot">
               <img src="assets/smartnotepad-signin.jpg" width="2880" height="1800" loading="lazy" decoding="async"
-                   alt="SmartNotepad sign-in screen: a dark panel reading 'Write. Organize. Remember everything.' beside a light sign-in card with email and password fields, a demo-account button and a create-account link.">
-              <figcaption>Sign-in screen, captured from smart-notepad-one.vercel.app on 28 Oct 2026. The editor itself sits behind authentication and is not shown; the page offers a demo account that the site says is not synced or saved.</figcaption>
+                   alt="SmartNotepad sign-in screen: a dark panel reading 'Write. Organize. Remember everything.' beside a light sign-in card with email and password fields and a demo-account button.">
+              <figcaption>Sign-in screen, captured 28 Oct 2026. The editor sits behind authentication; the page&rsquo;s own copy says demo notes are not synced or saved.</figcaption>
             </figure>
-            <div class="facts">
-              <p class="what">A cloud note-taking app: write notes in a responsive editor, keep them tied to a Supabase-authenticated account, and reopen them from any device.</p>
-              <h4>Implemented <span>(per README)</span></h4>
+            <div class="project-facts">
+              <p class="project-what">A focused cloud notepad: write in a responsive editor, keep notes tied to a Supabase account, reopen them anywhere.</p>
+              <h4>Built</h4>
               <ul>
-                <li>Next.js 15 App Router with a React 19 interface and a responsive note editor.</li>
-                <li>Cloud notes stored in Supabase with persistent per-user data.</li>
-                <li>Supabase Auth for sign-in, and a demo workspace for exploring without an account.</li>
-                <li>Tailwind CSS interface with a typed codebase (TypeScript, ESLint, Prettier scripts).</li>
+                <li>Next.js 15 App Router with a React 19 editor.</li>
+                <li>Notes persisted per user in Supabase.</li>
+                <li>Supabase Auth sign-in plus a demo workspace.</li>
+                <li>Typed codebase with ESLint and Prettier scripts.</li>
               </ul>
-              <h4>Stack</h4>
-              <ul class="tags" aria-label="SmartNotepad stack">
-                <li>Next.js 15</li><li>React 19</li><li>TypeScript</li><li>Tailwind CSS</li><li>Supabase</li><li>Supabase Auth</li><li>Vercel</li>
-              </ul>
-              <h4>Honest limits</h4>
-              <p class="limits">The README calls it "actively developed" and a personal productivity project. It lists cloud notes, authentication and a responsive editor — no collaboration, sharing or publishing features are claimed.</p>
+              <h4>Unresolved</h4>
+              <p class="limits">No collaboration, sharing or publishing — none are claimed in its README either.</p>
               <p class="links">
-                <a class="btn btn-primary" href="https://smart-notepad-one.vercel.app" target="_blank" rel="noopener">Live demo<span class="sr-only"> (opens in new tab)</span></a>
-                <a class="btn btn-ghost" href="https://github.com/rkaif8314-a11y/SmartNotepad" target="_blank" rel="noopener">Repository<span class="sr-only"> (opens in new tab)</span></a>
+                <a class="btn btn-solid" href="https://smart-notepad-one.vercel.app" target="_blank" rel="noopener">Live demo<span class="sr-only"> (opens in new tab)</span></a>
+                <a class="btn" href="https://github.com/rkaif8314-a11y/SmartNotepad" target="_blank" rel="noopener">Repository<span class="sr-only"> (opens in new tab)</span></a>
               </p>
             </div>
           </div>
         </article>
 
-
-        <article class="territory" id="asrs" aria-labelledby="asrs-title">
-          <header class="territory-head">
-            <p class="coord">Territory 03</p>
-            <h3 id="asrs-title">ASRS — student record system</h3>
-            <p class="status status-demo"><span aria-hidden="true"></span>Demo · role-based student records</p>
-          </header>
-          <div class="territory-body">
+        <article class="project" id="asrs" aria-labelledby="asrs-title">
+          <div class="project-top">
+            <span class="project-index" aria-hidden="true">03</span>
+            <div class="project-title">
+              <h3 id="asrs-title">ASRS</h3>
+              <p class="project-tag">Student records &amp; attendance · Next.js, Firebase</p>
+            </div>
+            <p class="chip chip-demo">Demo</p>
+          </div>
+          <div class="project-body">
             <figure class="shot">
               <img src="assets/asrs-landing.jpg" width="2880" height="1800" loading="lazy" decoding="async"
-                   alt="ASRS landing page: 'Attendance &amp; Student Records.' headline with a system panel showing Students, Courses, Attendance and Secure, above a 'Choose your portal' row with Student, Faculty and Admin cards.">
-              <figcaption>Public landing page, captured from asrs-sys.vercel.app on 28 Oct 2026. Portal dashboards require a signed-in account and are not shown.</figcaption>
+                   alt="ASRS landing page: 'Attendance and Student Records.' headline with a system panel showing Students, Courses, Attendance and Secure, above Student, Faculty and Admin portal cards.">
+              <figcaption>Public landing page, captured 28 Oct 2026. Portal dashboards require sign-in.</figcaption>
             </figure>
-            <div class="facts">
-              <p class="what">An attendance and academic-records system for students, faculty and administrators, with a separate portal for each role and Firestore security rules behind it.</p>
-              <h4>Implemented <span>(per README)</span></h4>
+            <div class="project-facts">
+              <p class="project-what">Attendance and academic records for students, faculty and administrators, with a separate portal per role.</p>
+              <h4>Built</h4>
               <ul>
-                <li>Role-based portals: profile documents with a <code>student</code>, <code>faculty</code> or <code>admin</code> role decide which portal a user reaches.</li>
-                <li>Firestore collections for profiles, courses, enrollments, attendance sessions, attendance records and marks.</li>
-                <li>Firebase Authentication with email and password, plus <code>firestore.rules</code> for per-role and per-owner access.</li>
-                <li>Documented deployment checks for authentication, role routing and Firestore access.</li>
+                <li>Role documents (<code>student</code> / <code>faculty</code> / <code>admin</code>) decide which portal a user reaches.</li>
+                <li>Firestore collections for profiles, courses, enrollments, sessions, records and marks.</li>
+                <li>Firebase email/password auth with rules for role and ownership access.</li>
               </ul>
-              <h4>Stack</h4>
-              <ul class="tags" aria-label="ASRS stack">
-                <li>Next.js</li><li>React</li><li>TypeScript</li><li>Firebase Auth</li><li>Cloud Firestore</li><li>Firebase Admin</li><li>Vercel</li>
-              </ul>
-              <h4>Honest limits</h4>
-              <p class="limits">Published as a demo. It is not described as an official IIT Bhilai system, and no adoption, user numbers or institutional endorsement are claimed. The README asks for authorised and unauthorised paths to be tested before treating any deployment as ready.</p>
+              <h4>Unresolved</h4>
+              <p class="limits">Published as a demo — not described as an official IIT Bhilai system, with no adoption, user counts or endorsement claimed.</p>
               <p class="links">
-                <a class="btn btn-primary" href="https://asrs-sys.vercel.app/" target="_blank" rel="noopener">Live demo<span class="sr-only"> (opens in new tab)</span></a>
-                <a class="btn btn-ghost" href="https://github.com/rkaif8314-a11y/IIT-BHILAI-RECORD-SYSTEM-TO-STUDENT-RECORD-MANAGEMENT-SYSTEM" target="_blank" rel="noopener">Repository<span class="sr-only"> (opens in new tab)</span></a>
+                <a class="btn btn-solid" href="https://asrs-sys.vercel.app/" target="_blank" rel="noopener">Live demo<span class="sr-only"> (opens in new tab)</span></a>
+                <a class="btn" href="https://github.com/rkaif8314-a11y/IIT-BHILAI-RECORD-SYSTEM-TO-STUDENT-RECORD-MANAGEMENT-SYSTEM" target="_blank" rel="noopener">Repository<span class="sr-only"> (opens in new tab)</span></a>
               </p>
             </div>
           </div>
         </article>
 
-        <article class="territory" id="nextmarga" aria-labelledby="nextmarga-title">
-          <header class="territory-head">
-            <p class="coord">Territory 04</p>
-            <h3 id="nextmarga-title">NextMarga</h3>
-            <p class="status status-active"><span aria-hidden="true"></span>Active development · live demo</p>
-          </header>
-          <div class="territory-body">
-            <figure class="shot diagram">
+
+        <article class="project" id="nextmarga" aria-labelledby="nextmarga-title">
+          <div class="project-top">
+            <span class="project-index" aria-hidden="true">04</span>
+            <div class="project-title">
+              <h3 id="nextmarga-title">NextMarga</h3>
+              <p class="project-tag">Opportunity discovery · React, Express, Gemini</p>
+            </div>
+            <p class="chip">Active development</p>
+          </div>
+          <div class="project-body">
+            <figure class="shot shot-diagram">
               <svg viewBox="0 0 640 360" role="img" aria-labelledby="nm-diagram-title nm-diagram-desc">
                 <title id="nm-diagram-title">NextMarga architecture diagram</title>
                 <desc id="nm-diagram-desc">A React and TypeScript interface sends CareerAI requests through a server API boundary, which forwards them to Gemini and Supabase.</desc>
@@ -223,127 +271,92 @@
                   <text x="480" y="305">Supabase Auth + data</text>
                 </g>
               </svg>
-              <figcaption>Architecture diagram, not a screenshot — redrawn from the README's architecture overview. A verified product screenshot is still to be added.</figcaption>
+              <figcaption>Architecture diagram, not a screenshot — redrawn from the README. A live capture showed an empty opportunity list, so no screenshot is presented as a product preview.</figcaption>
             </figure>
-            <div class="facts">
-              <p class="what">A student-focused platform for discovering scholarships, competitions, exams, internships, research programs and hackathons, with a profile, roadmap, application tracking and an AI career assistant.</p>
-              <h4>Problem <span>(per README)</span></h4>
-              <p>Students often search dozens of websites for opportunities that match their class, interests, location and goals. NextMarga aims to bring that into one personalised flow.</p>
-              <h4>Implemented <span>(per README)</span></h4>
+            <div class="project-facts">
+              <p class="project-what">Students search dozens of sites for scholarships, competitions, exams and internships. NextMarga pulls that into one flow with a profile, roadmap, applications and an AI assistant.</p>
+              <h4>Built</h4>
               <ul>
-                <li>Opportunity search and filtering with category browsing and deadline information.</li>
-                <li>Student profile with education, interests, skills and goals, plus an onboarding wizard.</li>
-                <li>Roadmap, applications and dossier screens.</li>
-                <li>CareerAI chat and assessment endpoints behind a server API that validates requests before calling Gemini.</li>
-                <li>Supabase authentication and data with Row Level Security; PWA support and a Capacitor Android project.</li>
+                <li>Opportunity search and filtering with category browsing and deadlines.</li>
+                <li>Profile and onboarding wizard, roadmap, applications and dossier screens.</li>
+                <li>CareerAI endpoints behind a server boundary that validates before calling Gemini.</li>
+                <li>Supabase auth and data with RLS; PWA support and a Capacitor Android project.</li>
               </ul>
-              <h4>Stack</h4>
-              <ul class="tags" aria-label="NextMarga stack">
-                <li>React 19</li><li>TypeScript</li><li>Vite</li><li>Tailwind CSS v4</li><li>Express server</li><li>Supabase</li><li>Gemini (@google/genai)</li><li>Capacitor</li><li>PWA</li>
-              </ul>
-              <h4>Honest limits</h4>
-              <p class="limits">The README calls it "actively developed" and says opportunity coverage is still evolving. AI guidance is assistance; eligibility and deadlines should be checked against official sources.</p>
+              <h4>Engineering note</h4>
+              <p class="note">Keys never reach the client: AI requests pass through <code>api/chat.ts</code> and <code>api/assess-response.ts</code>.</p>
+              <h4>Unresolved</h4>
+              <p class="limits">Its README calls it actively developed and says opportunity coverage is still evolving. AI guidance is assistance — eligibility and deadlines must be checked at the source.</p>
               <p class="links">
-                <a class="btn btn-primary" href="https://next-marga.vercel.app" target="_blank" rel="noopener">Live demo<span class="sr-only"> (opens in new tab)</span></a>
-                <a class="btn btn-ghost" href="https://github.com/rkaif8314-a11y/NextMarga" target="_blank" rel="noopener">Repository<span class="sr-only"> (opens in new tab)</span></a>
+                <a class="btn btn-solid" href="https://next-marga.vercel.app" target="_blank" rel="noopener">Live demo<span class="sr-only"> (opens in new tab)</span></a>
+                <a class="btn" href="https://github.com/rkaif8314-a11y/NextMarga" target="_blank" rel="noopener">Repository<span class="sr-only"> (opens in new tab)</span></a>
               </p>
             </div>
           </div>
         </article>
-
-
-        <p class="more"><a href="https://github.com/rkaif8314-a11y/portfolio" target="_blank" rel="noopener">Source of this portfolio</a></p>
       </section>
 
-      <section class="section container more-builds" id="more" aria-labelledby="more-title">
-        <p class="coord">More builds</p>
-        <h2 id="more-title">Smaller experiments</h2>
-        <p class="section-note">Kept here because they still run, not because they are finished. Stacks and status come from each repository.</p>
-
-        <ul class="build-grid">
-          <li class="build">
+      <section class="panel" id="more" aria-labelledby="more-title">
+        <header class="panel-head">
+          <p class="num">04</p>
+          <h2 id="more-title">Smaller builds</h2>
+        </header>
+        <ul class="mini-list">
+          <li>
             <h3>SkyLume Weather</h3>
-            <p>A calm weather dashboard with live conditions and a 7-day forecast.</p>
-            <p class="build-meta">HTML · CSS · JavaScript · Open-Meteo</p>
-            <p class="status"><span aria-hidden="true"></span>Live demo</p>
-            <p class="links">
-              <a class="btn btn-ghost btn-sm" href="https://skylume-weather.vercel.app" target="_blank" rel="noopener">Demo<span class="sr-only"> (opens in new tab)</span></a>
-              <a class="btn btn-ghost btn-sm" href="https://github.com/rkaif8314-a11y/skylume-weather" target="_blank" rel="noopener">Repo<span class="sr-only"> (opens in new tab)</span></a>
-            </p>
+            <p>Calm weather dashboard, 7-day forecast, city search, geolocation.</p>
+            <p class="mini-meta">HTML · CSS · JS · Open-Meteo</p>
+            <p class="mini-links"><a href="https://skylume-weather.vercel.app" target="_blank" rel="noopener">Demo<span class="sr-only"> (opens in new tab)</span></a><a href="https://github.com/rkaif8314-a11y/skylume-weather" target="_blank" rel="noopener">Repo<span class="sr-only"> (opens in new tab)</span></a></p>
           </li>
-          <li class="build">
+          <li>
             <h3>Veriq</h3>
-            <p>A trust checker for URLs, messages and claims that reports its own confidence and limits.</p>
-            <p class="build-meta">Next.js 15 · React 19 · TypeScript · Supabase (optional)</p>
-            <p class="status"><span aria-hidden="true"></span>MVP · live demo</p>
-            <p class="links">
-              <a class="btn btn-ghost btn-sm" href="https://veriq-smoky.vercel.app" target="_blank" rel="noopener">Demo<span class="sr-only"> (opens in new tab)</span></a>
-              <a class="btn btn-ghost btn-sm" href="https://github.com/rkaif8314-a11y/Veriq" target="_blank" rel="noopener">Repo<span class="sr-only"> (opens in new tab)</span></a>
-            </p>
+            <p>Trust checker for links and messages that reports its own confidence and limits.</p>
+            <p class="mini-meta">Next.js 15 · React 19 · TypeScript</p>
+            <p class="mini-links"><a href="https://veriq-smoky.vercel.app" target="_blank" rel="noopener">Demo<span class="sr-only"> (opens in new tab)</span></a><a href="https://github.com/rkaif8314-a11y/Veriq" target="_blank" rel="noopener">Repo<span class="sr-only"> (opens in new tab)</span></a></p>
           </li>
-          <li class="build">
+          <li>
             <h3>CodeVault</h3>
-            <p>A personal DSA command centre tracking progress through Striver's A2Z sheet.</p>
-            <p class="build-meta">React · Vite · Firebase Auth · Firestore</p>
-            <p class="status"><span aria-hidden="true"></span>Live demo</p>
-            <p class="links">
-              <a class="btn btn-ghost btn-sm" href="https://codevault-pink.vercel.app" target="_blank" rel="noopener">Demo<span class="sr-only"> (opens in new tab)</span></a>
-              <a class="btn btn-ghost btn-sm" href="https://github.com/rkaif8314-a11y/codevault" target="_blank" rel="noopener">Repo<span class="sr-only"> (opens in new tab)</span></a>
-            </p>
+            <p>Personal DSA command centre tracking progress through Striver&rsquo;s A2Z sheet.</p>
+            <p class="mini-meta">React · Vite · Firebase</p>
+            <p class="mini-links"><a href="https://codevault-pink.vercel.app" target="_blank" rel="noopener">Demo<span class="sr-only"> (opens in new tab)</span></a><a href="https://github.com/rkaif8314-a11y/codevault" target="_blank" rel="noopener">Repo<span class="sr-only"> (opens in new tab)</span></a></p>
           </li>
         </ul>
-
-        <p class="practice">Algorithm practice, kept as a habit rather than a showcase:
-          <a href="https://github.com/rkaif8314-a11y/Leetcode-TUF-DSA-problems-" target="_blank" rel="noopener">Leetcode-TUF-DSA-problems-</a> (C++),
-          <a href="https://github.com/rkaif8314-a11y/DSA-C-" target="_blank" rel="noopener">DSA-C-</a> (C++).
+        <p class="practice">Algorithm practice:
+          <a href="https://github.com/rkaif8314-a11y/Leetcode-TUF-DSA-problems-" target="_blank" rel="noopener">Leetcode-TUF-DSA-problems-</a> ·
+          <a href="https://github.com/rkaif8314-a11y/DSA-C-" target="_blank" rel="noopener">DSA-C-</a>
         </p>
       </section>
 
-      <section class="section container" id="experience" aria-labelledby="route-title">
-        <p class="coord">Route</p>
-        <h2 id="route-title">My journey</h2>
-        <ol class="timeline">
-          <li>
-            <span class="coord">2025 — Present</span>
-            <h3>Building larger product experiments</h3>
-            <p>Designing systems around discovery, opportunity, and AI-assisted guidance.</p>
-          </li>
-          <li>
-            <span class="coord">Ongoing</span>
-            <h3>DSA and problem solving</h3>
-            <p>Strengthening core algorithms, patterns, and system-level thinking through practice.</p>
-          </li>
-          <li>
-            <span class="coord">Foundation</span>
-            <h3>Engineering at IIT Bhilai</h3>
-            <p>Building a disciplined technical base while exploring software as a creative and product discipline.</p>
-          </li>
-        </ol>
+      <section class="panel" id="skills" aria-labelledby="stack-title">
+        <header class="panel-head">
+          <p class="num">05</p>
+          <h2 id="stack-title">Tech stack</h2>
+        </header>
+        <div class="stack-grid">
+          <div><h3>Interface</h3><p>React · Next.js · TypeScript · JavaScript · HTML · CSS · Tailwind</p></div>
+          <div><h3>Data</h3><p>Supabase · Postgres · Firebase · Firestore</p></div>
+          <div><h3>Server</h3><p>Node · Express · REST endpoints · Row Level Security</p></div>
+          <div><h3>Language</h3><p>C++ · TypeScript · JavaScript</p></div>
+        </div>
+        <p class="stack-note">Only what appears in the repositories above — no proficiency percentages.</p>
       </section>
 
-      <section class="section container" id="skills" aria-labelledby="skills-title">
-        <p class="coord">Instruments</p>
-        <h2 id="skills-title">Skills and technologies</h2>
-        <dl class="skills">
-          <div><dt>Frontend</dt><dd>React, Next.js, TypeScript, Tailwind</dd></div>
-          <div><dt>Backend</dt><dd>Node, APIs, Supabase, Data models</dd></div>
-          <div><dt>AI</dt><dd>LLMs, prompts, product workflows</dd></div>
-          <div><dt>Systems</dt><dd>Deployment, Git, analytics, iteration</dd></div>
-        </dl>
-      </section>
-
-      <section class="section container contact" id="contact" aria-labelledby="contact-title">
-        <p class="coord">Open channel</p>
-        <h2 id="contact-title">Have a good problem?</h2>
-        <p class="hero-actions">
-          <a class="btn btn-primary" href="mailto:rkaif8314@gmail.com">Email me</a>
-          <a class="btn btn-ghost" href="https://www.linkedin.com/in/kaif-raja-92a116283/" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in new tab)</span></a>
-          <a class="btn btn-ghost" href="https://github.com/rkaif8314-a11y" target="_blank" rel="noopener">GitHub<span class="sr-only"> (opens in new tab)</span></a>
-        </p>
+      <section class="contact" id="contact" aria-labelledby="contact-title">
+        <p class="eyebrow">04 — Contact</p>
+        <h2 id="contact-title">Let&rsquo;s build<br><span class="outline">something real.</span></h2>
+        <p class="contact-sub">Open to software engineering internships and interesting side projects.</p>
+        <ul class="contact-links">
+          <li><a href="mailto:rkaif8314@gmail.com">rkaif8314@gmail.com</a></li>
+          <li><a href="https://github.com/rkaif8314-a11y" target="_blank" rel="noopener">GitHub<span class="sr-only"> (opens in new tab)</span></a></li>
+          <li><a href="https://www.linkedin.com/in/kaif-raja-92a116283/" target="_blank" rel="noopener">LinkedIn<span class="sr-only"> (opens in new tab)</span></a></li>
+        </ul>
       </section>
     </main>
 
-    <footer class="footer container"><p>© <span id="year">2026</span> Kaif Ali</p></footer>
+    <footer class="footer">
+      <p>Kaif Ali — B.Tech Electrical Engineering, IIT Bhilai</p>
+      <p>Built, written and maintained by me. <a href="https://github.com/rkaif8314-a11y/portfolio" target="_blank" rel="noopener">Source<span class="sr-only"> (opens in new tab)</span></a></p>
+      <p>© <span id="year">2026</span></p>
+    </footer>
 
     <div class="palette" id="palette" role="dialog" aria-modal="true" aria-labelledby="palette-title" hidden>
       <div class="palette-panel" role="document">
