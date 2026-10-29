@@ -25,68 +25,217 @@ if ('IntersectionObserver' in window && watched.length) {
   watched.forEach((el) => spy.observe(el));
 }
 
-/* Contour backdrop: decorative, paused off-screen, static with reduced motion. */
-const canvas = document.querySelector('#contours');
-if (canvas instanceof HTMLCanvasElement) {
-  const ctx = canvas.getContext('2d');
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+/* Live system topology — decorative backdrop.
+   Nodes drift, links join nearest neighbours, and packets travel along links so
+   the field reads as a running system rather than a pattern. Guardrails: DPR
+   capped, node budget scales with area, ~30fps cap, paused off-screen and when
+   the tab is hidden, one static frame under prefers-reduced-motion. */
+const topologyCanvas = document.querySelector('#topology');
+
+if (topologyCanvas instanceof HTMLCanvasElement) {
+  const ctx = topologyCanvas.getContext('2d');
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const nodeCountEl = document.querySelector('#node-count');
+  const linkCountEl = document.querySelector('#link-count');
+
+  const FRAME_MS = 1000 / 30;
+  const MAX_NODES = 54;
+
   let width = 0;
   let height = 0;
+  let nodes = [];
+  let links = [];
+  let packets = [];
   let running = false;
-  let frame = 0;
-  let pointerX = 0.5;
+  let rafId = 0;
+  let lastPaint = 0;
+  let isOnScreen = true;
+  let pointer = { x: 0.5, y: 0.5 };
+
+  const rand = (min, max) => min + Math.random() * (max - min);
+
+  const buildScene = () => {
+    const budget = Math.round((width * height) / 26000);
+    const count = Math.max(14, Math.min(MAX_NODES, budget));
+
+    nodes = Array.from({ length: count }, () => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      vx: rand(-0.045, 0.045),
+      vy: rand(-0.045, 0.045),
+      r: rand(1.4, 3.2),
+      hub: Math.random() < 0.16,
+      phase: Math.random() * Math.PI * 2,
+    }));
+
+    // Link each node to its two nearest neighbours, de-duplicated.
+    const seen = new Set();
+    links = [];
+    nodes.forEach((node, i) => {
+      nodes
+        .map((other, j) => ({ j, d: (other.x - node.x) ** 2 + (other.y - node.y) ** 2 }))
+        .filter((entry) => entry.j !== i)
+        .sort((a, b) => a.d - b.d)
+        .slice(0, 2)
+        .forEach(({ j }) => {
+          const key = i < j ? `${i}-${j}` : `${j}-${i}`;
+          if (seen.has(key)) return;
+          seen.add(key);
+          links.push({ a: i, b: j });
+        });
+    });
+
+    packets = links
+      .filter(() => Math.random() < 0.55)
+      .map((link) => ({ link, t: Math.random(), speed: rand(0.0016, 0.0052) }));
+
+    if (nodeCountEl) nodeCountEl.textContent = String(nodes.length);
+    if (linkCountEl) linkCountEl.textContent = String(links.length);
+  };
 
   const resize = () => {
     const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-    width = canvas.clientWidth;
-    height = canvas.clientHeight;
-    canvas.width = Math.max(1, Math.round(width * dpr));
-    canvas.height = Math.max(1, Math.round(height * dpr));
+    width = topologyCanvas.clientWidth;
+    height = topologyCanvas.clientHeight;
+    topologyCanvas.width = Math.max(1, Math.round(width * dpr));
+    topologyCanvas.height = Math.max(1, Math.round(height * dpr));
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    buildScene();
   };
 
-  const draw = (t) => {
+  const advance = () => {
+    nodes.forEach((node) => {
+      node.x += node.vx;
+      node.y += node.vy;
+      if (node.x < 0 || node.x > width) node.vx *= -1;
+      if (node.y < 0 || node.y > height) node.vy *= -1;
+      node.x = Math.min(Math.max(node.x, 0), width);
+      node.y = Math.min(Math.max(node.y, 0), height);
+    });
+    packets.forEach((packet) => {
+      packet.t += packet.speed;
+      if (packet.t > 1) packet.t -= 1;
+    });
+  };
+  const paint = (time) => {
     if (!ctx || !width || !height) return;
+    const shiftX = (pointer.x - 0.5) * 18;
+    const shiftY = (pointer.y - 0.5) * 12;
+
     ctx.clearRect(0, 0, width, height);
-    const lines = 28;
-    for (let i = 0; i < lines; i += 1) {
-      const base = (i / lines) * height * 1.2;
+    ctx.save();
+    ctx.translate(shiftX, shiftY);
+
+    // Links: dimmed by length so distant pairs recede.
+    links.forEach((link) => {
+      const a = nodes[link.a];
+      const b = nodes[link.b];
+      if (!a || !b) return;
+      const dist = Math.hypot(b.x - a.x, b.y - a.y) || 1;
+      const fade = Math.max(0, 1 - dist / (Math.min(width, height) * 0.55));
+      ctx.strokeStyle = `rgba(234,229,236,${(0.05 + fade * 0.13).toFixed(3)})`;
+      ctx.lineWidth = 1;
       ctx.beginPath();
-      for (let x = 0; x <= width; x += 14) {
-        const nx = x / width;
-        const y = base
-          + Math.sin(nx * 4.4 + i * 0.32 + t * 0.0002) * 26
-          + Math.sin(nx * 9 - i * 0.18 + t * 0.00028 + pointerX * 2) * 10
-          + Math.cos(nx * 2 + i * 0.1) * 34;
-        if (x === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-      }
-      ctx.strokeStyle = i % 6 === 0 ? 'rgba(242,163,60,0.32)' : 'rgba(234,229,236,0.10)';
-      ctx.lineWidth = i % 6 === 0 ? 1.2 : 1;
+      ctx.moveTo(a.x, a.y);
+      ctx.lineTo(b.x, b.y);
       ctx.stroke();
-    }
+    });
+
+    // Packets: short amber trails travelling along their link.
+    packets.forEach((packet) => {
+      const a = nodes[packet.link.a];
+      const b = nodes[packet.link.b];
+      if (!a || !b) return;
+      const x = a.x + (b.x - a.x) * packet.t;
+      const y = a.y + (b.y - a.y) * packet.t;
+      const tail = Math.max(0, packet.t - 0.14);
+      const tx = a.x + (b.x - a.x) * tail;
+      const ty = a.y + (b.y - a.y) * tail;
+      const trail = ctx.createLinearGradient(tx, ty, x, y);
+      trail.addColorStop(0, 'rgba(242,163,60,0)');
+      trail.addColorStop(1, 'rgba(242,163,60,0.75)');
+      ctx.strokeStyle = trail;
+      ctx.lineWidth = 1.4;
+      ctx.beginPath();
+      ctx.moveTo(tx, ty);
+      ctx.lineTo(x, y);
+      ctx.stroke();
+      ctx.fillStyle = 'rgba(255,206,138,0.9)';
+      ctx.beginPath();
+      ctx.arc(x, y, 1.5, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    // Nodes: hairline rings; hubs pulse amber.
+    nodes.forEach((node) => {
+      const pulse = node.hub ? 0.35 + 0.25 * Math.sin(time * 0.0011 + node.phase) : 0.18;
+      ctx.strokeStyle = node.hub
+        ? `rgba(242,163,60,${pulse.toFixed(3)})`
+        : `rgba(234,229,236,${pulse.toFixed(3)})`;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.r + 3, 0, Math.PI * 2);
+      ctx.stroke();
+      ctx.fillStyle = node.hub ? 'rgba(242,163,60,0.85)' : 'rgba(234,229,236,0.5)';
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, node.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    ctx.restore();
   };
 
-  const loop = (t) => {
+  const loop = (time) => {
     if (!running) return;
-    draw(t);
-    frame = requestAnimationFrame(loop);
+    rafId = requestAnimationFrame(loop);
+    if (time - lastPaint < FRAME_MS) return; // ~30fps ceiling
+    lastPaint = time;
+    advance();
+    paint(time);
   };
-  const start = () => { if (running || reduced.matches) return; running = true; frame = requestAnimationFrame(loop); };
-  const stop = () => { running = false; cancelAnimationFrame(frame); };
+
+  const start = () => {
+    if (running || reducedMotion.matches) return;
+    running = true;
+    rafId = requestAnimationFrame(loop);
+  };
+  const stop = () => {
+    running = false;
+    cancelAnimationFrame(rafId);
+  };
 
   if (ctx) {
     resize();
-    draw(0);
-    window.addEventListener('resize', () => { resize(); draw(performance.now()); });
-    window.addEventListener('pointermove', (event) => { pointerX = event.clientX / window.innerWidth; }, { passive: true });
-    reduced.addEventListener('change', () => { if (reduced.matches) { stop(); draw(0); } else start(); });
+    paint(0);
+
+    let resizeTimer = 0;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => { resize(); if (!running) paint(performance.now()); }, 180);
+    });
+    window.addEventListener('pointermove', (event) => {
+      pointer = { x: event.clientX / window.innerWidth, y: event.clientY / window.innerHeight };
+    }, { passive: true });
+
+    reducedMotion.addEventListener('change', () => {
+      if (reducedMotion.matches) { stop(); paint(0); } else start();
+    });
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) stop();
+      else if (isOnScreen) start();
+    });
+
     if ('IntersectionObserver' in window) {
-      new IntersectionObserver(([entry]) => (entry.isIntersecting ? start() : stop())).observe(canvas);
+      new IntersectionObserver(([entry]) => {
+        isOnScreen = entry.isIntersecting;
+        if (isOnScreen) start(); else stop();
+      }, { threshold: 0.02 }).observe(topologyCanvas);
     } else {
       start();
     }
   }
 }
+
 
 const yearTarget = document.querySelector('#year');
 if (yearTarget) yearTarget.textContent = new Date().getFullYear();

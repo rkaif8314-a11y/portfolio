@@ -59,7 +59,7 @@ html.js .palette-open { display: grid; }
 .hero { position: relative; min-height: calc(100svh - 1px); display: flex; align-items: flex-end; overflow: hidden; border-bottom: 1px solid var(--line); }
 .scene-shell { position: absolute; inset: 0; }
 .scene-shell canvas { width: 100%; height: 100%; }
-.scene-shell::after { content: ''; position: absolute; inset: 0; background: radial-gradient(120% 80% at 20% 10%, rgba(0,0,0,.55), rgba(0,0,0,.92)); }
+.scene-shell::after { content: ''; position: absolute; inset: 0; background: radial-gradient(130% 90% at 18% 6%, rgba(0,0,0,.35), rgba(0,0,0,.86) 72%); }
 .hero-inner { position: relative; z-index: 1; width: 100%; padding: clamp(40px, 6vw, 72px) clamp(24px, 5vw, 72px) clamp(40px, 6vw, 64px); }
 .eyebrow { font: 500 0.78rem var(--font-mono); letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent); }
 .hero h1 { margin: 18px 0 0; font-size: clamp(3.2rem, 12.5vw, 10.5rem); font-weight: 900; line-height: 0.86; letter-spacing: -0.045em; text-transform: uppercase; }
@@ -68,6 +68,16 @@ html.js .palette-open { display: grid; }
 .hero-sub { margin-top: 28px; max-width: 56ch; color: var(--dust); font-size: clamp(1rem, 1.4vw, 1.15rem); line-height: 1.6; }
 .scroll-cue { display: inline-flex; align-items: center; gap: 10px; margin-top: 34px; font: 500 0.72rem var(--font-mono); letter-spacing: 0.18em; text-transform: uppercase; color: var(--paper); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 6px; }
 .scroll-cue:hover { color: var(--accent); border-color: var(--accent); }
+
+/* Live scene readout — states what the renderer is actually doing */
+.scene-readout { display: inline-flex; align-items: center; gap: 10px; margin-top: 18px; font: 500 0.66rem var(--font-mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--dust); }
+.live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 rgba(242,163,60,.7); animation: ping 2.4s var(--ease) infinite; }
+@keyframes ping {
+  0% { box-shadow: 0 0 0 0 rgba(242,163,60,.55); }
+  70% { box-shadow: 0 0 0 9px rgba(242,163,60,0); }
+  100% { box-shadow: 0 0 0 0 rgba(242,163,60,0); }
+}
+@media (prefers-reduced-motion: reduce) { .live-dot { animation: none; } }
 
 /* Role strip */
 .strip { overflow: hidden; border-bottom: 1px solid var(--line); padding: 16px 0; }
